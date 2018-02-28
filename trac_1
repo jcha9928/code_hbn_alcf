@@ -4,17 +4,18 @@ list=$1
 threads=256
 #threadsX2=$((${threads}*2))
 
-adni=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/adni
+hbn=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn
 
-CMD_batch=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/adni/adni_on_alcf/job/cmd1.batch.trac.${list}
+CMD_batch=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/code_hbn_alcf/job/cmd1.batch.trac.${list}
 rm -rf $CMD_batch
 
 #######################################################################################################
 cat<<EOC >$CMD_batch
 #!/bin/bash
-#COBALT -t 360
-#COBALT -n 202
-#COBALT --attrs mcdram=cache:numa=quad
+#COBALT -t 720
+#COBALT -n 1000
+#COBALT --attrs mcdram=cache:numa=quad 
+#COBALT --attrs ssds=required:ssd_size=100
 #COBALT -A AD_Brain_Imaging
 echo start............................................
 #export n_nodes=$COBALT_JOBSIZE
@@ -26,13 +27,13 @@ EOC
 
 #######################################################################################################
 i=1
-for s in `cat /lus/theta-fs0/projects/AD_Brain_Imaging/anal/adni/fs/\$list`
+for s in `cat /lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/fs/\$list`
 do
 #s=`echo $SUBJECT | egrep -o '[0-9]{8}'`
-CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/adni/adni_on_alcf/job/cmd1.trac.${s}
+CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/code_hbn_alcf/job/cmd1.trac.${s}
 rm -rf $CMD
 
-CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/adni/adni_on_alcf/job/cmd1_sub.trac.${s}
+CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/code_hbn_alcf/job/cmd1_sub.trac.${s}
 rm -rf $CMD_sub
 
 
@@ -42,13 +43,18 @@ SUBJECT=${s}
 cat<<EOC >$CMD
 #!/bin/bash
 source ~/.bashrc
-workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/adni/fs/${SUBJECT}/dmri2
-echo \$workingdir
-mkdir \$workingdir
-if [ ! -e \$workingdir ]; then mkdir \$workingdir; fi
-cd \$workingdir
-pwd
+workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/fs/${SUBJECT}/dmri2
+mkdir -p \$workingdir
+
+dwidir=
+
+currentdir=/local/scratch/dmri2
+mkdir -p \$currentdir
+cd \$currentdir
+echo current folder is `pwd`
+
 ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=256
+
 #%% 1. setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #cp /ifs/scratch/pimri/posnerlab/1anal/adni/data/nii/${s}_*DTI.nii.gz ./dti.nii.gz
 #cp /ifs/scratch/pimri/posnerlab/1anal/adni/data/nii/${s}_*DTI.bvec ./dti.bvec
@@ -56,29 +62,52 @@ ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=256
 #cp /ifs/scratch/pimri/posnerlab/1anal/adni/data/nii/${s}_*DTI.bvec_tp ./dti.bvec_tp
 #cp /ifs/scratch/pimri/posnerlab/1anal/adni/data/nii/${s}_*DTI.bval_tp ./dti.bval_tp
 #%% 2. DWI processing2-converting nifti to mif%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if [ ! -e mr_fod.mif.gz ];then
-    mrconvert dti.nii.gz -force mr_dwi.mif.gz -fslgrad dti.bvec dti.bval -datatype float32 -stride 0,0,0,1 -nthreads 256
+
+# 1. mrconvert
+if [ ! -e mr_dwi.mif ];then
+    mrconvert dti.nii.gz -force mr_dwi.mif -fslgrad dti.bvec dti.bval -datatype float32 -stride 0,0,0,1 -nthreads 256
 fi
-#%% 3. denoising
-if [ ! -e mr_dwi_denoised.mif.gz ];then
-    dwidenoise mr_dwi.mif.gz -force mr_dwi_denoised.mif.gz -nthreads 256
+
+# 2. denoising
+if [ ! -e mr_dwi_denoised.mif ];then
+    dwidenoise mr_dwi.mif -force mr_dwi_denoised.mif -nthreads 256
 fi
-#%% 4. dwipreproc -eddy current
-if [ ! -e mr_dwi_denoised_preproc.mif.gz ];then
-    dwipreproc -rpe_none -pe_dir PA mr_dwi_denoised.mif.gz -force mr_dwi_denoised_preproc.mif.gz -rpe_none -nthreads 256
+
+# 3. gibss ringing
+if [ ! -e mr_dwi_denoised_gibbs.mif ];then
+    mrdegibbs mr_dwi_denoised.mif mr_dwi_denoised_gibbs.mif -force -nthreads 256
 fi
-#%% 5. mask and bias field correction
-if [ ! -e mr_eroded_mask.mif.gz ]; then
-     dwi2mask mr_dwi_denoised_preproc.mif.gz - -nthreads 256 | maskfilter - erode -npass 7 -force mr_eroded_mask.mif.gz -nthreads 256
+
+# 4. dwipreproc -eddy current
+if [ ! -e mr_dwi_denoised_gibbs_preproc.mif ];then
+    mrcat *AP*dwi_epi.nii.gz *PA*dwi_epi.nii.gz b0s.mif -axis 3
+    
+    dwipreproc mr_dwi_denoised_gibbs.mif mr_dwi_denoised_gibbs_preproc.mif \
+-json_import sub-NDARPL721WTD_acq-64DIRECTIONSAP_dwi.json \
+-se_epi b0s.mif \
+-pe_dir AP \
+-rpe_pair \
+##########-readout_time 0.0691181 \#############??????????????????????????????
+-fslgrad *_dwi.bvec *_dwi.bval \
+-eddy_options " --repol "
+-nthreads 256
 fi
+
+# 5. mask and bias field correction
+if [ ! -e mr_eroded_mask.mif ]; then
+     dwi2mask mr_dwi_denoised_gibbs_preproc.mif - -nthreads 256 | maskfilter - erode -npass 3 -force mr_eroded_mask.mif -nthreads 256
+fi
+
 #%% 6. bias field correction
-if [ ! -e mr_dwi_denoised_preproc_biasCorr.mif.gz ]; then
-     dwibiascorrect mr_dwi_denoised_preproc.mif.gz -force mr_dwi_denoised_preproc_biasCorr.mif.gz -ants -mask mr_eroded_mask.mif.gz -fslgrad dti.bvec dti.bval -nthreads 256
+if [ ! -e mr_dwi_denoised_preproc_biasCorr.mif ]; then
+     dwibiascorrect mr_dwi_denoised_gibbs_preproc.mif -force mr_dwi_denoised_gibbs_preproc_biasCorr.mif -ants -mask mr_eroded_mask.mif -fslgrad dti.bvec dti.bval -nthreads 256
 fi
+
 #%% 7. generating b0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-if [ ! -e mr_meanb0.mif.gz ];then
-     dwiextract mr_dwi_denoised_preproc_biasCorr.mif.gz - -bzero -nthreads 256 | mrmath - mean -force mr_meanb0.mif.gz -axis 3 -nthreads 256 
+if [ ! -e mr_meanb0.mif ];then
+     dwiextract mr_dwi_denoised_gibbs_preproc_biasCorr.mif - -bzero -nthreads 256 | mrmath - mean -force mr_meanb0.mif -axis 3 -nthreads 256 
 fi
+
 #%% 8. upsampling %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for im in mr_dwi_denoised_preproc_biasCorr mr_eroded_mask mr_meanb0;
 do 
@@ -86,6 +115,7 @@ do
      mrresize \${im}.mif.gz -scale 2.0 -force \${im}_upsample.mif.gz -nthreads 256
      fi
 done
+
 #%% 9. dwi2response-subject level %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if [ ! -e response_wm.txt ]; then
     dwi2response dhollander -mask mr_eroded_mask.mif.gz -voxels mr_voxels_eroded.mif.gz mr_dwi_denoised_preproc_biasCorr.mif.gz response_wm.txt response_gm.txt response_csf.txt -force -nthreads 256
