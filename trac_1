@@ -46,7 +46,7 @@ source ~/.bashrc
 workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/fs/${SUBJECT}/dwi
 mkdir -p \$workingdir
 
-currentdir=/local/scratch/dmri2
+currentdir=/local/scratch/dmri
 mkdir -p \$currentdir
 cd \$currentdir
 echo current folder is `pwd`
