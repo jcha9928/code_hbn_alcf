@@ -15,8 +15,8 @@ cat<<EOC >$CMD_batch
 #!/bin/bash
 #COBALT -t 120
 #COBALT -n $N
-#COBALT --attrs mcdram=cache:numa=quad 
-#COBALT --attrs ssds=required:ssd_size=100
+#COBALT --attrs mcdram=cache:numa=quad:ssds=required:ssd_size=100 
+#COBALT -q debug-cache-quad
 #COBALT -A AD_Brain_Imaging
 echo start............................................
 #export n_nodes=$COBALT_JOBSIZE
