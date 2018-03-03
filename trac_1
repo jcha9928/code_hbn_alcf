@@ -19,7 +19,6 @@ cat<<EOC >$CMD_batch
 #COBALT --attrs mcdram=cache:numa=quad 
 #COBALT -A AD_Brain_Imaging
 #COBALT -M jiook.cha@nyspi.columbia.edu
-#COBALT -O /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/
 echo start............................................
 #export n_nodes=$COBALT_JOBSIZE
 #export n_mpi_ranks_per_node=202
