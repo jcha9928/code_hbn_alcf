@@ -96,7 +96,7 @@ if [ ! -e mr_dwi_denoised_gibbs_crop_preproc.mif ];then
     
     dim2=\`mrinfo mr_dwi_denoised_gibbs.mif | grep "x 81 x"\`
     str=${dim2}str
-    if [ $str = str ];then echo "##########nocropping needed###########" && cp b0s.mif b0s_crop.mif && cp mr_dwi_denoised_gibbs.mif mr_dwi_denoised_gibbs_crop.mif
+    if [ \$str = str ];then echo "##########nocropping needed###########" && cp b0s.mif b0s_crop.mif && cp mr_dwi_denoised_gibbs.mif mr_dwi_denoised_gibbs_crop.mif
     else mrcrop b0s.mif b0s_crop.mif -axis 2 1 80 -force -quiet && mrcrop mr_dwi_denoised_gibbs.mif mr_dwi_denoised_gibbs_crop.mif -axis 2 1 80 -force -quiet
     fi
     time dwipreproc mr_dwi_denoised_gibbs_crop.mif mr_dwi_denoised_gibbs_crop_preproc.mif \
