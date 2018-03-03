@@ -14,11 +14,11 @@ rm -rf /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.c
 #######################################################################################################
 cat<<EOC >$CMD_batch
 #!/bin/bash
-#COBALT -t 29
+#COBALT -t 02:00:00
 #COBALT -n $N
 #COBALT --attrs mcdram=cache:numa=quad 
-#COBALT -q debug-cache-quad
 #COBALT -A AD_Brain_Imaging
+#COBALT -M jiook.cha@nyspi.columbia.edu
 echo start............................................
 #export n_nodes=$COBALT_JOBSIZE
 #export n_mpi_ranks_per_node=202
