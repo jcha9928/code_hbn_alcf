@@ -80,21 +80,21 @@ if [ ! -e mr_dwi.mif.gz ];then
     echo mrconvert
     time mrconvert dti.nii.gz -force mr_dwi.mif -fslgrad dti.bvec dti.bval \
             -datatype float32 -stride 0,0,0,1 -nthreads 256 -quiet
-    pig mr_dwi.mif
+    pigz mr_dwi.mif
 fi
 
 # 2. denoising (time:1m)
 if [ ! -e mr_dwi_denoised.mif.gz ];then
     echo dwidenoise
     time dwidenoise mr_dwi.mif.gz -force mr_dwi_denoised.mif -nthreads 256 -quiet
-    pig mr_dwi_denoised.mif
+    pigz mr_dwi_denoised.mif
 fi
 
 # 3. gibss ringing (time:0.5m)
 if [ ! -e mr_dwi_denoised_gibbs.mif.gz ];then
     echo mrdegibss
     time mrdegibbs mr_dwi_denoised.mif.gz mr_dwi_denoised_gibbs.mif -force -nthreads 256 -quiet
-    pig mr_dwi_denoised_gibbs.mif
+    pigz mr_dwi_denoised_gibbs.mif
 fi
 
 # 4. dwipreproc -eddy current (time:33m)
@@ -115,7 +115,7 @@ if [ ! -e mr_dwi_denoised_gibbs_crop_preproc.mif.gz ];then
 -eddy_options " --repol " \
 -nthreads 256 \
 -nocleanup 
-     pig mr_dwi_denoised_gibbs_crop_preproc.mif
+     pigz mr_dwi_denoised_gibbs_crop_preproc.mif
 
 ##########-readout_time 0.0691181 \#############??????????????????????????????\
 
@@ -137,7 +137,7 @@ if [ ! -e mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif.gz ]; then
      -nthreads 256 -mask mr_meanb0_nonbiascorr_bet2_mask.nii.gz -quiet
      mrconvert mr_meanb0_nonbiascorr_bet2_mask.nii.gz mr_meanb0_nonbiascorr_bet2_mask.mif -force -quiet
      
-     pig mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif
+     pigz mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif
 fi
 
 #%% 7. generating b0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,7 +156,7 @@ do
      if [ ! -e \${im}_upsample125.mif.gz ];then
      mrresize \${im}.mif.gz -voxel 1.25 -force \${im}_upsample125.mif -interp sinc -nthreads 256 -quiet
      
-     pig \${im}_upsample125.mif
+     pigz \${im}_upsample125.mif
      fi
 done
 
