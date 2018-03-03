@@ -59,15 +59,15 @@ echo current folder is \`pwd\`
 ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=256
 
 #%% 1. setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-ln -s /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi/*dir_dwi.nii.gz ./dti.nii.gz
-ln -s /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi/*dir_dwi.bvec ./dti.bvec
-ln -s /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi/*dir_dwi.bval ./dti.bval
-ln -s /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi/*dir_dwi.json ./dti.json
+ln -fs /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi/*dir_dwi.nii.gz ./dti.nii.gz
+ln -fs /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi/*dir_dwi.bvec ./dti.bvec
+ln -fs /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi/*dir_dwi.bval ./dti.bval
+ln -fs /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi/*dir_dwi.json ./dti.json
 
-ln -s /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*AP_acq-dwi_epi.json ./dwi_fmap_AP.json
-ln -s /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*AP_acq-dwi_epi.nii.gz ./dwi_fmap_AP.nii.gz
-ln -s /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*PA_acq-dwi_epi.json ./dwi_fmap_PA.json
-ln -s /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*PA_acq-dwi_epi.nii.gz ./dwi_fmap_PA.nii.gz
+ln -fs /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*AP_acq-dwi_epi.json ./dwi_fmap_AP.json
+ln -fs /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*AP_acq-dwi_epi.nii.gz ./dwi_fmap_AP.nii.gz
+ln -fs /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*PA_acq-dwi_epi.json ./dwi_fmap_PA.json
+ln -fs /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*PA_acq-dwi_epi.nii.gz ./dwi_fmap_PA.nii.gz
 #cp /ifs/scratch/pimri/posnerlab/1anal/adni/data/nii/${s}_*DTI.bvec_tp ./dti.bvec_tp
 #cp /ifs/scratch/pimri/posnerlab/1anal/adni/data/nii/${s}_*DTI.bval_tp ./dti.bval_tp
 #%% 2. DWI processing2-converting nifti to mif%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
