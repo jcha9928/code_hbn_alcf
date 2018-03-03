@@ -107,7 +107,7 @@ if [ ! -e mr_dwi_denoised_gibbs_crop_preproc.mif ];then
 -fslgrad dti.bvec dti.bval \
 -eddy_options " --repol " \
 -nthreads 256 \
--nocleanup -quiet
+-nocleanup 
 
 ##########-readout_time 0.0691181 \#############??????????????????????????????\
 
@@ -195,7 +195,7 @@ done
 
 #5ttgen fsl brain_anat.nii.gz 5tt_from_brain_anat_test.nii.gz -nocrop 
 echo 5ttgen
-time 5ttgen freesurfer aparc+aseg_flip.nii.gz 5tt_freesurfer.nii.gz -nocrop -sgm_amyg_hipp -force -nthreads 256 -quiet
+time 5ttgen freesurfer aparc+aseg_flip.nii.gz 5tt_freesurfer.nii.gz -nocrop -sgm_amyg_hipp -force -nthreads 256 
 sleep 0.1
 flirt -in 5tt_freesurfer.nii.gz -ref mr_meanb0_upsample125_brain.nii -out 5tt_freesurfer2diff_upsample125 \
     -applyxfm -init anat2diff_upsample125.flt.mat -interp nearestneighbour
@@ -221,7 +221,7 @@ if [ ! -e response_wm.txt ]; then
     -voxels mr_voxels_eroded_upsample125.mif \
     mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif 5tt_freesurfer2diff_upsample125.mif.gz \
     response_wm.txt response_gm.txt response_csf.txt \
-    -force -nthreads 256 -quiet
+    -force -nthreads 256 
 fi
 #%% FOD%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -235,7 +235,7 @@ if [ ! -e WM_FODs_upsample125.mif ];then
    response_gm.txt gm.mif \
    response_csf.txt csf.mif \
    -mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz \
-   -force -nthreads 256 -quiet
+   -force -nthreads 256 
 fi
 
 if [ ! -e tissueRGB.mif.gz ]; then
@@ -245,7 +245,7 @@ fi
 ### this is crucial to make the FODs comparable across subjects### (time: 1m)
 echo mtnorm
 time mtnormalise WM_FODs_upsample125.mif WM_FODs_upsample125_norm.mif gm.mif gm_norm.mif csf.mif csf_norm.mif \
-        -mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz -nthreads 256 -quiet
+        -mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz -nthreads 256 
     
 mrconvert mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -quiet -force -nthreads 256
 mrconvert mr_dilate_mask_upsample125.mif mr_dilate_mask_upsample125.nii -force -nthreads 256 -quiet
@@ -281,7 +281,8 @@ chmod +x $CMD
 #chmod +x $CMD_sub
 
 
-echo "aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 $CMD > cmd1.log.${s} &">>$CMD_batch
+echo "aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 $CMD > cmd1.log.${s} 2>&1 &">>$CMD_batch
+
 echo "sleep 0.2">>$CMD_batch
 i=$(($i+1))
 echo $i
