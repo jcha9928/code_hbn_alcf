@@ -189,8 +189,8 @@ do
    orientLAS \${im}.nii.gz \${im}_flip.nii.gz
    sleep 0.2
    echo ****NOW FLIRTING
-   echo flirt -in \${im}_flip.nii.gz -out \${im}_2_diff_upsample125_flt.nii.gz -ref mr_meanb0_upsample125_brain.nii \
-            -applyxfm -init anat2diff_upsample125.flt.mat -interp nearestneighbour
+   flirt -in \${im}_flip.nii.gz -out \${im}_2_diff_upsample125_flt.nii.gz -ref mr_meanb0_upsample125_brain.nii \
+            -applyxfm -init anat2diff_upsample125.flt.mat -interp nearestneighbour -v
    sleep 0.1 & 
 done
 
@@ -257,6 +257,8 @@ dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -o dtifit 
 #cp -rfv ../dwi /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/
 #######################################################################
 
+# pigz#
+pigz --best -b 1280 -f -T -p 256 *mif
 echo "I THINK EVERYTHING IS DONE BY NOW"
 EOC
 
