@@ -165,7 +165,7 @@ done
 if [ ! -e mr_dilate_mask.mif.gz ];then
     dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz - -quiet -nthreads 256 | maskfilter - dilate -npass 3 mr_dilate_mask_upsample125.mif.gz -force -quiet -nthreads 256
     dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz mr_mask_upsample125.mif.gz -quiet -force
-    mrconvert mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii.gz -quiet
+    mrconvert mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii.gz -quiet -force
     bet2 mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125 mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2 -m -f 0.2  
 fi
 
