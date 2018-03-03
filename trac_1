@@ -88,7 +88,7 @@ fi
 if [ ! -e mr_dwi_denoised_gibbs_crop_preproc.mif ];then
     mrcat dwi_fmap_AP.nii.gz dwi_fmap_PA.nii.gz b0s.mif -force -axis 3 -nthreads 256
     
-    dim2=`mrinfo mr_dwi_denoised_gibbs.mif | grep "x 81 x"`
+    dim2=\`mrinfo mr_dwi_denoised_gibbs.mif | grep "x 81 x"\`
     str=${dim2}str
     if [ $str = str ];then echo "##########nocropping needed###########" && cp b0s.mif b0s_crop.mif && cp mr_dwi_denoised_gibbs.mif mr_dwi_denoised_gibbs_crop.mif
     else mrcrop b0s.mif b0s_crop.mif -axis 2 1 80 -force && mrcrop mr_dwi_denoised_gibbs.mif mr_dwi_denoised_gibbs_crop.mif -axis 2 1 80 -force
