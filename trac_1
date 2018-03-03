@@ -46,8 +46,9 @@ source ~/.bashrc
 workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/fs/${SUBJECT}/dwi
 mkdir -p \$workingdir
 
-currentdir=/local/scratch/dmri
-mkdir -p \$currentdir
+mkdir -p /local/scratch/${s}
+mkdir -p /local/scratch/${s}/dwi
+currentdir=/local/scratch/${s}/dwi
 cd \$currentdir
 echo current folder is `pwd`
 
@@ -239,30 +240,33 @@ mrconvert mr_dilate_mask_upsample125.mif mr_dilate_mask_upsample125.nii -force -
 dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -o dtifit \
     -m mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz -r dti.bvec -b dti.bval -V
 
+#### COPY ALL THE FILES TO SCRATCH ####
+cp -rfv ../dwi /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/
+#######################################################################
 
 echo "I THINK EVERYTHING IS DONE BY NOW"
 EOC
 
+################################################## END OF CMD##########################################################
 chmod +x $CMD
 
 ####################################################################
-cat<<EOA >$CMD_sub
-#!/bin/bash
+#cat<<EOA >$CMD_
+##!/bin/bash
 #COBALT -t 60
 #COBALT -n 1
 #COBALT --attrs mcdram=cache:numa=quad
 #COBALT -A AD_Brain_Imaging
-echo start............................................
+#echo start............................................
 #export n_nodes=$COBALT_JOBSIZE
 #export n_mpi_ranks_per_node=202
 #export n_mpi_ranks=202
 #export n_openmp_threads_per_rank=64
 #export n_hyperthreads_per_core=4
-aprun -n 1 -N 1 -d 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 -cc depth $CMD
-EOA
+#aprun -n 1 -N 1 -d 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 -cc depth $CMD
+#EOA
 #####################################################################
-
-chmod +x $CMD_sub
+#chmod +x $CMD_sub
 
 
 echo "aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 $CMD > cmd1.log.${SUBJECT} &">>$CMD_batch
@@ -279,5 +283,6 @@ echo "wait" >> $CMD_batch
 echo $CMD_batch
 chmod +x $CMD_batch
 echo "qsub $CMD_batch"
+
 #$code/fsl_sub_hpc_2 -s smp,$threads -l /ifs/scratch/pimri/posnerlab/1anal/adni/adni_on_c2b2/job -t $CMD_batch
 #$code/fsl_sub_hpc_6 -l /ifs/scratch/pimri/posnerlab/1anal/adni/adni_on_c2b2/job -t $CMD_batch
