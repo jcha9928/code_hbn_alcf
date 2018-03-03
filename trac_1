@@ -1,6 +1,7 @@
 #!/bin/bash
 
 list=$1
+N=`wc ${1} | awk '{print $1}'`
 threads=256
 #threadsX2=$((${threads}*2))
 
@@ -12,8 +13,8 @@ rm -rf $CMD_batch
 #######################################################################################################
 cat<<EOC >$CMD_batch
 #!/bin/bash
-#COBALT -t 720
-#COBALT -n 1000
+#COBALT -t 120
+#COBALT -n $N
 #COBALT --attrs mcdram=cache:numa=quad 
 #COBALT --attrs ssds=required:ssd_size=100
 #COBALT -A AD_Brain_Imaging
@@ -46,11 +47,12 @@ cat<<EOC >$CMD
 source ~/.bashrc
 workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${SUBJECT}/dwi
 mkdir -p \$workingdir
+cd \$workingdir
 
-mkdir -p /local/scratch/${s}
-mkdir -p /local/scratch/${s}/dwi
-currentdir=/local/scratch/${s}/dwi
-cd \$currentdir
+#mkdir -p /local/scratch/${s}
+#mkdir -p /local/scratch/${s}/dwi
+#currentdir=/local/scratch/${s}/dwi
+#cd \$currentdir
 echo current folder is `pwd`
 
 ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=256
@@ -242,7 +244,7 @@ dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -o dtifit 
     -m mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz -r dti.bvec -b dti.bval -V
 
 #### COPY ALL THE FILES TO SCRATCH ####
-cp -rfv ../dwi /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/
+#cp -rfv ../dwi /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/
 #######################################################################
 
 echo "I THINK EVERYTHING IS DONE BY NOW"
