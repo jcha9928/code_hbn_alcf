@@ -6,7 +6,7 @@ threads=256
 
 hbn=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn
 
-CMD_batch=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/code_hbn_alcf/job/cmd1.batch.trac.${list}
+CMD_batch=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.batch.trac.${list}
 rm -rf $CMD_batch
 
 #######################################################################################################
@@ -27,13 +27,14 @@ EOC
 
 #######################################################################################################
 i=1
-for s in `cat /lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/fs/\$list`
+for s in `cat /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/\$list`
+            
 do
 #s=`echo $SUBJECT | egrep -o '[0-9]{8}'`
-CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/code_hbn_alcf/job/cmd1.trac.${s}
+CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.${s}
 rm -rf $CMD
 
-CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/code_hbn_alcf/job/cmd1_sub.trac.${s}
+CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1_sub.trac.${s}
 rm -rf $CMD_sub
 
 
@@ -43,7 +44,7 @@ SUBJECT=${s}
 cat<<EOC >$CMD
 #!/bin/bash
 source ~/.bashrc
-workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn/fs/${SUBJECT}/dwi
+workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${SUBJECT}/dwi
 mkdir -p \$workingdir
 
 mkdir -p /local/scratch/${s}
