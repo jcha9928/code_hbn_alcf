@@ -181,9 +181,8 @@ mkdir xfm
 echo *****NOW GENERATING ANAT2DIFF.FLT.MAT *****
 mri_convert \$workingdir2/brain.mgz brain_anat_orig.nii.gz && orientLAS brain_anat_orig.nii.gz brain_anat.nii.gz
 
-mrconvert mr_meanb0_upsample125.mif.gz mr_meanb0_upsample125.nii.gz -force && bet2 mr_meanb0_upsample125.nii.gz mr_meanb0_upsample125_brain.nii.gz -quiet
-
-flirt -in brain_anat.nii.gz -ref mr_meanb0_upsample125_brain.nii.gz -out brain_anat2diff_upsample125 -omat anat2diff_upsample125.flt.mat -v
+mrconvert mr_meanb0_upsample125.mif.gz mr_meanb0_upsample125.nii.gz -force && bet2 mr_meanb0_upsample125 mr_meanb0_upsample125_brain
+flirt -in brain_anat -ref mr_meanb0_upsample125_brain -out brain_anat2diff_upsample125 -omat anat2diff_upsample125.flt.mat -v
 
 ### 5TTGEN#########################################
 echo ***** NOW 5TTGEN *****
@@ -201,7 +200,7 @@ do
    orientLAS \${im}.nii.gz \${im}_flip.nii.gz
    sleep 0.2
    echo ****NOW FLIRTING
-   flirt -in \${im}_flip.nii.gz -out \${im}_2_diff_upsample125_flt.nii.gz -ref mr_meanb0_upsample125_brain.nii.gz \
+   flirt -in \${im}_flip -out \${im}_2_diff_upsample125_flt -ref mr_meanb0_upsample125_brain \
             -applyxfm -init anat2diff_upsample125.flt.mat -interp nearestneighbour -v
    sleep 0.1 & 
 done
