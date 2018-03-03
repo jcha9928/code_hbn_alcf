@@ -13,7 +13,7 @@ rm -rf $CMD_batch
 #######################################################################################################
 cat<<EOC >$CMD_batch
 #!/bin/bash
-#COBALT -t 2
+#COBALT -t 29
 #COBALT -n $N
 #COBALT --attrs mcdram=cache:numa=quad 
 #COBALT -q debug-cache-quad
