@@ -79,46 +79,48 @@ rm -rf *nii
 # 1. mrconvert
 #if [ ! -e mr_dwi.mif.gz ];then
     echo mrconvert
-    time mrconvert dti.nii.gz -force mr_dwi.mif.gz -fslgrad dti.bvec dti.bval \
+    time mrconvert dti.nii.gz -force mr_dwi.mif -fslgrad dti.bvec dti.bval \
             -datatype float32 -stride 0,0,0,1 -nthreads 256 -quiet
-    # pigz --fast -b 1280 -force mr_dwi.mif
+    #pigz --fast -b 1280 -force mr_dwi.mif
 #fi
 
 # 2. denoising (time:1m)
 #if [ ! -e mr_dwi_denoised.mif.gz ];then
     echo dwidenoise
-    time dwidenoise mr_dwi.mif.gz -force mr_dwi_denoised.mif.gz -nthreads 256 
-    #pigz --fast -b 1280 -force mr_dwi_denoised.mif.gz
+    time dwidenoise mr_dwi.mif -force mr_dwi_denoised.mif -nthreads 256 
+    #pigz --fast -b 1280 -force mr_dwi_denoised.mif
 #fi
 
 # 3. gibss ringing (time:0.5m)
 #if [ ! -e mr_dwi_denoised_gibbs.mif.gz ];then
     echo mrdegibss
-    time mrdegibbs mr_dwi_denoised.mif.gz mr_dwi_denoised_gibbs.mif.gz -force -nthreads 256 -quiet
+    time mrdegibbs mr_dwi_denoised.mif mr_dwi_denoised_gibbs.mif -force -nthreads 256 -quiet
     #pigz --fast -b 1280 -force mr_dwi_denoised_gibbs.mif
 #fi
 
 # 4. dwipreproc -eddy current (time:33m)
 #if [ ! -e mr_dwi_denoised_gibbs_crop_preproc.mif.gz ];then
-    mrcat dwi_fmap_AP.nii.gz dwi_fmap_PA.nii.gz b0s.mif.gz -force -axis 3 -nthreads 256 -quiet
+    mrcat dwi_fmap_AP.nii.gz dwi_fmap_PA.nii.gz b0s.mif -force -axis 3 -nthreads 256 -quiet
     #pigz --fast -b 1280 -force b0s.mif
     
-    dim2=\`mrinfo mr_dwi_denoised_gibbs.mif.gz | grep "x 81 x"\`
+    dim2=\`mrinfo mr_dwi_denoised_gibbs.mif | grep "x 81 x"\`
     str=${dim2}str
     if [ \$str = str ];then echo "##########nocropping needed###########" && \
-    cp b0s.mif.gz b0s_crop.mif.gz && cp mr_dwi_denoised_gibbs.mif.gz mr_dwi_denoised_gibbs_crop.mif.gz
-    else mrcrop b0s.mif.gz b0s_crop.mif.gz -axis 2 1 80 -force -quiet && mrcrop mr_dwi_denoised_gibbs.mif.gz mr_dwi_denoised_gibbs_crop.mif.gz -axis 2 1 80 -force -quiet
+    cp b0s.mif b0s_crop.mif && cp mr_dwi_denoised_gibbs.mif mr_dwi_denoised_gibbs_crop.mif
+    else mrcrop b0s.mif b0s_crop.mif -axis 2 1 80 -force -quiet && \
+    mrcrop mr_dwi_denoised_gibbs.mif mr_dwi_denoised_gibbs_crop.mif -axis 2 1 80 -force -quiet 
+    #pigz --fast -b 1280 -f b0s_crop.mif && pigz --fast -b 1280 -f mr_dwi_denoised_gibbs_crop.mif
     fi
-    time dwipreproc mr_dwi_denoised_gibbs_crop.mif.gz mr_dwi_denoised_gibbs_crop_preproc.mif.gz \
+    time dwipreproc mr_dwi_denoised_gibbs_crop.mif mr_dwi_denoised_gibbs_crop_preproc.mif \
 -json_import dti.json \
--se_epi b0s_crop.mif.gz \
+-se_epi b0s_crop.mif \
 -pe_dir AP \
 -rpe_pair \
 -fslgrad dti.bvec dti.bval \
 -eddy_options " --repol " \
 -nthreads 256 \
--nocleanup -force
-   #  pigz --fast -b 1280 -force mr_dwi_denoised_gibbs_crop_preproc.mif
+-nocleanup -force 
+   #pigz --fast -b 1280 -f mr_dwi_denoised_gibbs_crop_preproc.mif
 
 ##########-readout_time 0.0691181 \#############??????????????????????????????\
 
@@ -126,29 +128,36 @@ rm -rf *nii
 
 # 5. mask 
 #if [ ! -e mr_eroded_mask.mif.gz ]; then
-     dwiextract mr_dwi_denoised_gibbs_crop_preproc.mif.gz - -bzero -nthreads 256 -quiet | mrmath - mean -force mr_meanb0_nonbiascorr.mif.gz -axis 3 -quiet -nthreads 256 
-     #     pigz --fast -b 1280 -force mr_meanb0_nonbiascorr.mif
-     mrconvert mr_meanb0_nonbiascorr.mif.gz mr_meanb0_nonbiascorr.nii.gz -force -quiet
-     #     pigz --fast -b 1280 -force mr_meanb0_nonbiascorr.nii
+     dwiextract mr_dwi_denoised_gibbs_crop_preproc.mif - -bzero -nthreads 256 -quiet | mrmath - mean \
+                -force mr_meanb0_nonbiascorr.mif -axis 3 -quiet -nthreads 256 
+     #pigz --fast -b 1280 -f mr_meanb0_nonbiascorr.mif
+     mrconvert mr_meanb0_nonbiascorr.mif mr_meanb0_nonbiascorr.nii -force -quiet
+     #pigz --fast -b 1280 -f mr_meanb0_nonbiascorr.nii
      bet2 mr_meanb0_nonbiascorr mr_meanb0_nonbiascorr_bet2 -m -f 0.1
-     dwi2mask mr_dwi_denoised_gibbs_crop_preproc.mif.gz mr_dwi_mask.mif.gz -force -nthreads 256 -quiet
      
-     dwi2mask mr_dwi_denoised_gibbs_crop_preproc.mif.gz - -nthreads 256 -quiet | maskfilter - erode -npass 3 -force mr_eroded_mask.mif.gz -quiet -nthreads 256
+     dwi2mask mr_dwi_denoised_gibbs_crop_preproc.mif mr_dwi_mask.mif -force -nthreads 256 -quiet
+            #pigz --fast -b 1280 -f mr_dwi_mask.mif
+            
+     dwi2mask mr_dwi_denoised_gibbs_crop_preproc.mif - -nthreads 256 -quiet | maskfilter - erode \
+     -npass 3 -force mr_eroded_mask.mif -quiet -nthreads 256
+            #pigz --fast -b 1280 -f mr_eroded_mask.mif
 #fi
 
 #%% 6. bias field correction (time: 0.5m)
 #if [ ! -e mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif.gz ]; then
      echo dwibiascorrect
-     time dwibiascorrect mr_dwi_denoised_gibbs_crop_preproc.mif.gz -force mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif.gz -ants \
-     -nthreads 256 -mask mr_meanb0_nonbiascorr_bet2_mask.nii.gz -quiet
-     mrconvert mr_meanb0_nonbiascorr_bet2_mask.nii.gz mr_meanb0_nonbiascorr_bet2_mask.mif.gz -force -quiet
-     
-     
+     time dwibiascorrect mr_dwi_denoised_gibbs_crop_preproc.mif -force mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif -ants \
+     -nthreads 256 -mask mr_meanb0_nonbiascorr_bet2_mask.nii -quiet
+            #pigz --fast -b 1280 -f mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif
+     mrconvert mr_meanb0_nonbiascorr_bet2_mask.nii mr_meanb0_nonbiascorr_bet2_mask.mif -force 
+            #pigz --fast -b 1280 -f mr_meanb0_nonbiascorr_bet2_mask.mif
 #fi
 
 #%% 7. generating b0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #if [ ! -e mr_meanb0.mif.gz ];then
-     dwiextract mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif.gz - -bzero -quiet -nthreads 256 | mrmath - mean -force mr_meanb0.mif.gz -axis 3 -quiet -nthreads 256 
+     dwiextract mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif - -bzero -quiet -nthreads 256 | mrmath - mean \
+     -force mr_meanb0.mif -axis 3 -quiet -nthreads 256 
+     #&& pigz --fast -b 1280 -f mr_meanb0.mif
 #fi
 
 #% make sure to use "DILATED MASK" for FOD generation
@@ -161,16 +170,25 @@ rm -rf *nii
 for im in mr_dwi_denoised_gibbs_crop_preproc_biasCorr mr_meanb0_nonbiascorr_bet2_mask mr_meanb0;
 do 
      if [ ! -e \${im}_upsample125.mif.gz ];then
-     mrresize \${im}.mif.gz -voxel 1.25 -force \${im}_upsample125.mif.gz -interp sinc -nthreads 256 -quiet
+     mrresize \${im}.mif -voxel 1.25 -force \${im}_upsample125.mif -interp sinc -nthreads 256 -quiet
+     #pigz --fast -b 1280 -f \${im}_upsample125.mif
      fi
 done
 
 #% make sure to use "DILATED MASK" for FOD generation
 #if [ ! -e mr_dilate_mask.mif.gz ];then
-    dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz - -quiet -nthreads 256 | maskfilter - dilate -npass 3 mr_dilate_mask_upsample125.mif.gz -force -quiet -nthreads 256
-    dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz mr_mask_upsample125.mif.gz -quiet -force
-    mrconvert mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii.gz -quiet -force
-    bet2 mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125 mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2 -m -f 0.2  
+    dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif - -quiet -nthreads 256 | maskfilter - dilate 
+    -npass 3 mr_dilate_mask_upsample125.mif -force -quiet -nthreads 256 
+            #&& pigz --fast -b 1280 -f mr_dilate_mask_upsample125.mif
+    
+    dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif mr_mask_upsample125.mif -quiet -force && \
+            #pigz --fast -b 1280 -f mr_mask_upsample125.mif
+    
+    mrconvert mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif \
+            mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -quiet -force
+    
+    bet2 mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125 \
+    mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2.nii -m -f 0.2  
 #fi
 
 
@@ -183,11 +201,11 @@ workingdir3=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/anat
 mkdir xfm
 ### flirt 
 echo *****NOW GENERATING ANAT2DIFF.FLT.MAT *****
-mri_convert \$workingdir2/brain.mgz brain_anat_orig.nii.gz && orientLAS brain_anat_orig.nii.gz brain_anat.nii.gz
+mri_convert \$workingdir2/brain.mgz brain_anat_orig.nii && orientLAS brain_anat_orig.nii brain_anat.nii
 
-mrconvert mr_meanb0_upsample125.mif.gz mr_meanb0_upsample125.nii.gz -force && bet2 mr_meanb0_upsample125 mr_meanb0_upsample125_brain
+mrconvert mr_meanb0_upsample125.mif mr_meanb0_upsample125.nii -force && bet2 mr_meanb0_upsample125 mr_meanb0_upsample125_brain.nii
 flirt -in brain_anat -ref mr_meanb0_upsample125_brain -out brain_anat2diff_upsample125 -omat anat2diff_upsample125.flt.mat -v
-flirt -in brain_anat -ref mr_meanb0_nonbiascorr_bet2.nii.gz -out brain_anat2diff -omat anat2diff.flt.mat -v
+flirt -in brain_anat -ref mr_meanb0_nonbiascorr_bet2 -out brain_anat2diff -omat anat2diff.flt.mat -v
 ### 5TTGEN#########################################
 echo ***** NOW 5TTGEN *****
 #mri_convert \$workingdir3/*_T1w.nii.gz T1.nii.gz && orientLAS T1.nii.gz T1_flip.nii.gz
@@ -198,10 +216,10 @@ echo ***** NOW 5TTGEN *****
 for im in aparc+aseg aparc.a2009s+aseg
 do
    echo ****NOW CONVERTING MGZ TO NII
-   mri_convert \$workingdir2/\${im}.mgz \${im}.nii.gz
+   mri_convert \$workingdir2/\${im}.mgz \${im}.nii
    sleep 0.2
    echo ****FLIPING FOR FSL
-   orientLAS \${im}.nii.gz \${im}_flip.nii.gz
+   orientLAS \${im}.nii \${im}_flip.nii
    sleep 0.2
    echo ****NOW FLIRTING
    flirt -in \${im}_flip -out \${im}_2_diff_upsample125_flt -ref mr_meanb0_upsample125_brain \
@@ -211,21 +229,21 @@ done
 
 #5ttgen fsl brain_anat.nii.gz 5tt_from_brain_anat_test.nii.gz -nocrop 
 echo 5ttgen
-time 5ttgen freesurfer aparc+aseg_flip.nii.gz 5tt_freesurfer.nii.gz -nocrop -sgm_amyg_hipp -force -nthreads 256 
+time 5ttgen freesurfer aparc+aseg_flip.nii 5tt_freesurfer.nii -nocrop -sgm_amyg_hipp -force -nthreads 256 
             sleep 0.1
-flirt -in 5tt_freesurfer.nii.gz -ref mr_meanb0_nonbiascorr_bet2 -out 5tt_freesurfer2diff \
+flirt -in 5tt_freesurfer -ref mr_meanb0_nonbiascorr_bet2 -out 5tt_freesurfer2diff \
     -applyxfm -init anat2diff.flt.mat -interp nearestneighbour
 
-flirt -in 5tt_freesurfer.nii.gz -ref mr_meanb0_upsample125_brain.nii.gz -out 5tt_freesurfer2diff_upsample125 \
+flirt -in 5tt_freesurfer -ref mr_meanb0_upsample125_brain -out 5tt_freesurfer2diff_upsample125 \
     -applyxfm -init anat2diff_upsample125.flt.mat -interp nearestneighbour
             sleep 0.1
-mrconvert 5tt_freesurfer2diff_upsample125.nii.gz 5tt_freesurfer2diff_upsample125.mif.gz -force -nthreads 256 -quiet
+mrconvert 5tt_freesurfer2diff_upsample125.nii 5tt_freesurfer2diff_upsample125.mif -force -nthreads 256 -quiet
             sleep 0.1
 #cp 5tt_freesurfer2diff.nii.gz 5tt2.nii.gz
 #sleep 0.2
 #cp 5tt_freesurfer2diff.mif.gz 5tt2.mif.gz
 #sleep 0.2
-5tt2gmwmi 5tt_freesurfer2diff_upsample125.mif.gz -force 5tt_freesurfer2diff_upsample125_gmwmi_mask.mif.gz -force -nthreads 256 -quiet
+5tt2gmwmi 5tt_freesurfer2diff_upsample125.mif -force 5tt_freesurfer2diff_upsample125_gmwmi_mask.mif -force -nthreads 256 -quiet
             sleep 0.1
 ##########################################################################################################################################
 ##########################################################################################################################################
@@ -237,37 +255,37 @@ mrconvert 5tt_freesurfer2diff_upsample125.nii.gz 5tt_freesurfer2diff_upsample125
 #            response_wm.txt response_gm.txt response_csf.txt \
 #            -voxels response_voxels.mif.gz -force -nthreads 256
 #fi
-time dwi2response dhollander mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif.gz \
+time dwi2response dhollander mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif \
             response_wm.txt response_gm.txt response_csf.txt \
-            -voxels response_voxels.mif.gz -force -nthreads 256
+            -voxels response_voxels.mif -force -nthreads 256
 
 #%% FOD%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ### FOD estimation (time: 3m)
 #if [ ! -e WM_FODs_upsample125.mif.gz ];then 
    echo dwi2fod
-   time dwi2fod msmt_csd mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz \
+   time dwi2fod msmt_csd mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif \
             response_wm.txt \
             WM_FODs_upsample125.mif.gz \
             response_gm.txt gm.mif.gz \
              response_csf.txt csf.mif.gz \
-            -mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz \
+            -mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii \
             -force -nthreads 256 
 #fi
 
 #if [ ! -e tissueRGB.mif.gz ]; then
-   mrconvert WM_FODs_upsample125.mif.gz - -coord 3 0 -nthreads 256 -quiet | mrcat csf.mif.gz gm.mif.gz - tissueRGB.mif.gz -axis 3 -nthreads 256 -quiet
+   mrconvert WM_FODs_upsample125.mif - -coord 3 0 -nthreads 256 -quiet | mrcat csf.mif gm.mif - tissueRGB.mif -axis 3 -nthreads 256 -quiet
 #fi
 
 ### this is crucial to make the FODs comparable across subjects### (time: 1m)
 echo mtnorm
-time mtnormalise WM_FODs_upsample125.mif.gz WM_FODs_upsample125_norm.mif.gz gm.mif.gz gm_norm.mif.gz csf.mif.gz csf_norm.mif.gz \
-        -mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz -nthreads 256 
+time mtnormalise WM_FODs_upsample125.mif WM_FODs_upsample125_norm.mif gm.mif gm_norm.mif csf.mif csf_norm.mif \
+        -mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii -nthreads 256 
     
-mrconvert mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii.gz -quiet -force -nthreads 256
-mrconvert mr_dilate_mask_upsample125.mif.gz mr_dilate_mask_upsample125.nii.gz -force -nthreads 256 -quiet
-dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii.gz -o dtifit \
-    -m mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz -r dti.bvec -b dti.bval -V
+mrconvert mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -quiet -force -nthreads 256
+mrconvert mr_dilate_mask_upsample125.mif mr_dilate_mask_upsample125.nii -force -nthreads 256 -quiet
+dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -o dtifit \
+    -m mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii -r dti.bvec -b dti.bval -V
 
 #### COPY ALL THE FILES TO SCRATCH ####
 #cp -rfv ../dwi /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/
