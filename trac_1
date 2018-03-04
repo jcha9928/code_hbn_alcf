@@ -81,26 +81,27 @@ rm -rf *nii
     echo mrconvert
     time mrconvert dti.nii.gz -force mr_dwi.mif.gz -fslgrad dti.bvec dti.bval \
             -datatype float32 -stride 0,0,0,1 -nthreads 256 -quiet
-   
+    # pigz --fast -b 1280 -force mr_dwi.mif
 #fi
 
 # 2. denoising (time:1m)
 #if [ ! -e mr_dwi_denoised.mif.gz ];then
     echo dwidenoise
-    time dwidenoise mr_dwi.mif.gz -force mr_dwi_denoised.mif.gz -nthreads 256 -quiet
-
+    time dwidenoise mr_dwi.mif.gz -force mr_dwi_denoised.mif.gz -nthreads 256 
+    #pigz --fast -b 1280 -force mr_dwi_denoised.mif.gz
 #fi
 
 # 3. gibss ringing (time:0.5m)
 #if [ ! -e mr_dwi_denoised_gibbs.mif.gz ];then
     echo mrdegibss
     time mrdegibbs mr_dwi_denoised.mif.gz mr_dwi_denoised_gibbs.mif.gz -force -nthreads 256 -quiet
-  
+    #pigz --fast -b 1280 -force mr_dwi_denoised_gibbs.mif
 #fi
 
 # 4. dwipreproc -eddy current (time:33m)
 #if [ ! -e mr_dwi_denoised_gibbs_crop_preproc.mif.gz ];then
     mrcat dwi_fmap_AP.nii.gz dwi_fmap_PA.nii.gz b0s.mif.gz -force -axis 3 -nthreads 256 -quiet
+    #pigz --fast -b 1280 -force b0s.mif
     
     dim2=\`mrinfo mr_dwi_denoised_gibbs.mif.gz | grep "x 81 x"\`
     str=${dim2}str
@@ -117,7 +118,7 @@ rm -rf *nii
 -eddy_options " --repol " \
 -nthreads 256 \
 -nocleanup -force
-     
+   #  pigz --fast -b 1280 -force mr_dwi_denoised_gibbs_crop_preproc.mif
 
 ##########-readout_time 0.0691181 \#############??????????????????????????????\
 
@@ -126,9 +127,12 @@ rm -rf *nii
 # 5. mask 
 #if [ ! -e mr_eroded_mask.mif.gz ]; then
      dwiextract mr_dwi_denoised_gibbs_crop_preproc.mif.gz - -bzero -nthreads 256 -quiet | mrmath - mean -force mr_meanb0_nonbiascorr.mif.gz -axis 3 -quiet -nthreads 256 
+     #     pigz --fast -b 1280 -force mr_meanb0_nonbiascorr.mif
      mrconvert mr_meanb0_nonbiascorr.mif.gz mr_meanb0_nonbiascorr.nii.gz -force -quiet
+     #     pigz --fast -b 1280 -force mr_meanb0_nonbiascorr.nii
      bet2 mr_meanb0_nonbiascorr mr_meanb0_nonbiascorr_bet2 -m -f 0.1
      dwi2mask mr_dwi_denoised_gibbs_crop_preproc.mif.gz mr_dwi_mask.mif.gz -force -nthreads 256 -quiet
+     
      dwi2mask mr_dwi_denoised_gibbs_crop_preproc.mif.gz - -nthreads 256 -quiet | maskfilter - erode -npass 3 -force mr_eroded_mask.mif.gz -quiet -nthreads 256
 #fi
 
