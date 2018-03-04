@@ -19,11 +19,11 @@ cat<<EOC >$CMD_batch
 #COBALT -A AD_Brain_Imaging
 #COBALT -M jiook.cha@nyspi.columbia.edu
 echo start............................................
-export n_nodes=\$COBALT_JOBSIZE
-export n_mpi_ranks_per_node=1
-export n_mpi_ranks=1
-export n_openmp_threads_per_rank=64
-export n_hyperthreads_per_core=4
+#export n_nodes=\$COBALT_JOBSIZE
+#export n_mpi_ranks_per_node=1
+#export n_mpi_ranks=1
+#export n_openmp_threads_per_rank=64
+#export n_hyperthreads_per_core=4
 EOC
 
 #######################################################################################################
@@ -317,8 +317,9 @@ chmod +x $CMD
 #####################################################################
 #chmod +x $CMD_sub
 
-
-echo "aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
+### reference
+#echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=128 $CMD > ./job/log.tckgen.${SUBJECT} 2>&1 &">>$CMD_batch 
+echo "aprun -n 1 -N 1 -d 256 -j 4 -cc depth -e OMP_NUM_THREADS=256 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
 
 echo "sleep 0.2">>$CMD_batch
 i=$(($i+1))
