@@ -9,7 +9,6 @@ hbn=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn
 
 CMD_batch=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.batch.trac.${list}
 rm -rf $CMD_batch
-#rm -rf /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.${s}
 
 #######################################################################################################
 cat<<EOC >$CMD_batch
@@ -35,6 +34,8 @@ do
 #s=`echo $SUBJECT | egrep -o '[0-9]{8}'`
 CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.${s}
 rm -rf $CMD
+
+rm -rf /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.${s}
 
 CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1_sub.trac.${s}
 rm -rf $CMD_sub
