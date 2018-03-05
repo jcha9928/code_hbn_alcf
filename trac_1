@@ -49,6 +49,7 @@ cat<<EOC >$CMD
 #!/bin/bash
 source ~/.bashrc
 workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi_mr
+rm -rf \$workingdir
 mkdir -p \$workingdir
 cd \$workingdir
 
@@ -179,7 +180,7 @@ done
 #% make sure to use "DILATED MASK" for FOD generation
 #if [ ! -e mr_dilate_mask.mif.gz ];then
     dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif - -quiet -nthreads 128 | maskfilter - dilate 
-    -npass 3 mr_dilate_mask_upsample125.mif -force -quiet -nthreads 256 
+    -npass 3 mr_dilate_mask_upsample125.mif -force -quiet -nthreads 128 
             #&& pigz --fast -b 1280 -f mr_dilate_mask_upsample125.mif
     
     dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif mr_mask_upsample125.mif -quiet -force && \
@@ -238,13 +239,13 @@ flirt -in 5tt_freesurfer -ref mr_meanb0_nonbiascorr_bet2 -out 5tt_freesurfer2dif
 flirt -in 5tt_freesurfer -ref mr_meanb0_upsample125_brain -out 5tt_freesurfer2diff_upsample125 \
     -applyxfm -init anat2diff_upsample125.flt.mat -interp nearestneighbour
             sleep 0.1
-mrconvert 5tt_freesurfer2diff_upsample125.nii 5tt_freesurfer2diff_upsample125.mif -force -nthreads 256 -quiet
+mrconvert 5tt_freesurfer2diff_upsample125.nii 5tt_freesurfer2diff_upsample125.mif -force -nthreads 128 -quiet
             sleep 0.1
 #cp 5tt_freesurfer2diff.nii.gz 5tt2.nii.gz
 #sleep 0.2
 #cp 5tt_freesurfer2diff.mif.gz 5tt2.mif.gz
 #sleep 0.2
-5tt2gmwmi 5tt_freesurfer2diff_upsample125.mif -force 5tt_freesurfer2diff_upsample125_gmwmi_mask.mif -force -nthreads 256 -quiet
+5tt2gmwmi 5tt_freesurfer2diff_upsample125.mif -force 5tt_freesurfer2diff_upsample125_gmwmi_mask.mif -force -nthreads 128 -quiet
             sleep 0.1
 ##########################################################################################################################################
 ##########################################################################################################################################
@@ -275,7 +276,7 @@ time dwi2response dhollander mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif \
 #fi
 
 #if [ ! -e tissueRGB.mif.gz ]; then
-   mrconvert WM_FODs_upsample125.mif - -coord 3 0 -nthreads 256 -quiet | mrcat csf.mif gm.mif - tissueRGB.mif -axis 3 -nthreads 128 -quiet
+   mrconvert WM_FODs_upsample125.mif - -coord 3 0 -nthreads 128 -quiet | mrcat csf.mif gm.mif - tissueRGB.mif -axis 3 -nthreads 128 -quiet
 #fi
 
 ### this is crucial to make the FODs comparable across subjects### (time: 1m)
@@ -293,7 +294,7 @@ dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -o dtifit 
 #######################################################################
 
 # pigz#
-#pigz --best -b 1280 -f -T -p 256 *mif
+pigz --best -b 1280 -f -T -p 256 *mif
 echo "I THINK EVERYTHING IS DONE BY NOW"
 EOC
 
@@ -320,7 +321,7 @@ chmod +x $CMD
 
 ### reference
 #echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=128 $CMD > ./job/log.tckgen.${SUBJECT} 2>&1 &">>$CMD_batch 
-echo "aprun -n 1 -N 1 -d 256 -j 4 -cc depth -e OMP_NUM_THREADS=256 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
+echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=256 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
 
 echo "sleep 0.2">>$CMD_batch
 i=$(($i+1))
