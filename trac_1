@@ -158,7 +158,7 @@ rm -rf *nii
 #%% 7. generating b0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #if [ ! -e mr_meanb0.mif.gz ];then
      dwiextract mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif - -bzero -quiet -nthreads 192 | mrmath - mean \
-     -force mr_meanb0.mif -axis 3 -quiet -nthreads 256 
+     -force mr_meanb0.mif -axis 3 -quiet -nthreads 192 
      #&& pigz --fast -b 1280 -f mr_meanb0.mif
 #fi
 
@@ -179,7 +179,7 @@ done
 
 #% make sure to use "DILATED MASK" for FOD generation
 #if [ ! -e mr_dilate_mask.mif.gz ];then
-    dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif - -quiet -nthreads 192 | maskfilter - dilate 
+    dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif - -quiet -nthreads 192 | maskfilter - dilate \
     -npass 3 mr_dilate_mask_upsample125.mif -force -quiet -nthreads 192 
             #&& pigz --fast -b 1280 -f mr_dilate_mask_upsample125.mif
     
@@ -325,7 +325,7 @@ chmod +x $CMD
 
 ### reference
 #echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=128 $CMD > ./job/log.tckgen.${SUBJECT} 2>&1 &">>$CMD_batch 
-echo "aprun -n 1 -N 1 -d 192 -j 3 -cc depth -e OMP_NUM_THREADS=256 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
+echo "aprun -n 1 -N 1 -d 192 -j 3 -cc depth -e OMP_NUM_THREADS=192 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
 
 echo "sleep 0.2">>$CMD_batch
 i=$(($i+1))
