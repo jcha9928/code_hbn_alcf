@@ -15,7 +15,7 @@ cat<<EOC >$CMD_batch
 #!/bin/bash
 #COBALT -t 04:00:00
 #COBALT -n $N
-#COBALT --attrs mcdram=cache:numa=quad 
+#COBALT --attrs mcdram=cache:numa=quad:ssds=required:ssd_size=128 
 #COBALT -A AD_Brain_Imaging
 #COBALT -M jiook.cha@nyspi.columbia.edu
 #COBALT ATP_ENABLED=1
@@ -51,12 +51,12 @@ source ~/.bashrc
 workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi_mr
 rm -rf \$workingdir
 mkdir -p \$workingdir
-cd \$workingdir
+#cd \$workingdir
 
-#mkdir -p /local/scratch/${s}
-#mkdir -p /local/scratch/${s}/dwi
-#currentdir=/local/scratch/${s}/dwi
-#cd \$currentdir
+mkdir -p /local/scratch/${s}
+mkdir -p /local/scratch/${s}/dwi_mr
+ssd=/local/scratch/${s}/dwi_mr
+cd \$ssd
 
 echo current folder is \`pwd\`
 
@@ -295,6 +295,8 @@ dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -o dtifit 
 
 # pigz#
 pigz --best -b 1280 -f -T -p 256 *mif
+cp -rfv \$ssd /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}
+
 echo "I THINK EVERYTHING IS DONE BY NOW"
 EOC
 
