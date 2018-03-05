@@ -179,7 +179,7 @@ done
 
 #% make sure to use "DILATED MASK" for FOD generation
 #if [ ! -e mr_dilate_mask.mif.gz ];then
-    dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif - -quiet -nthreads 192 -nthreads 128 | maskfilter - dilate 
+    dwi2mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif - -quiet -nthreads 192 | maskfilter - dilate 
     -npass 3 mr_dilate_mask_upsample125.mif -force -quiet -nthreads 192 
             #&& pigz --fast -b 1280 -f mr_dilate_mask_upsample125.mif
     
@@ -296,6 +296,7 @@ dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -o dtifit 
 
 # pigz#
 pigz --best -b 1280 -f -T -p 256 *mif
+pigz --best -b 1280 -f -T -p 256 *nii
 cp -rfv \$ssd /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}
 
 echo "I THINK EVERYTHING IS DONE BY NOW"
