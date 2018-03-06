@@ -96,7 +96,7 @@ rm -rf *nii
 # 3. gibss ringing (time:0.5m)
 #if [ ! -e mr_dwi_denoised_gibbs.mif.gz ];then
     echo mrdegibss
-    time mrdegibbs mr_dwi_denoised.mif mr_dwi_denoised_gibbs.mif -force -nthreads ${threads} -quiet
+    time mrdegibbs mr_dwi_denoised.mif mr_dwi_denoised_gibbs.mif -force -nthreads ${threads} 
     #pigz --fast -b 1280 -force mr_dwi_denoised_gibbs.mif
 #fi
 
