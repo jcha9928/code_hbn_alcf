@@ -1,0 +1,145 @@
+#!/bin/bash
+
+list=$1
+N=`wc ${1} | awk '{print $1}'`
+threads=192
+#threadsX2=$((${threads}*2))
+
+hbn=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn
+
+CMD_batch=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.batch.trac.${list}
+rm -rf $CMD_batch
+
+#######################################################################################################
+cat<<EOC >$CMD_batch
+#!/bin/bash
+#COBALT -t 04:00:00
+#COBALT -n $N
+#COBALT --attrs mcdram=cache:numa=quad:ssds=required:ssd_size=128 
+#COBALT -A AD_Brain_Imaging
+#COBALT -M jiook.cha@nyspi.columbia.edu
+#COBALT ATP_ENABLED=1
+echo start............................................
+#export n_nodes=\$COBALT_JOBSIZE
+#export n_mpi_ranks_per_node=1
+#export n_mpi_ranks=1
+#export n_openmp_threads_per_rank=64
+#export n_hyperthreads_per_core=4
+EOC
+
+#######################################################################################################
+i=1
+for s in `cat /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/\$list`
+            
+do
+#s=`echo $SUBJECT | egrep -o '[0-9]{8}'`
+CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.${s}
+rm -rf $CMD
+
+rm -rf /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.${s}
+
+CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1_sub.trac.${s}
+rm -rf $CMD_sub
+
+
+SUBJECT=${s}
+#echo ${SUBJECT}
+
+cat<<EOC >$CMD
+#!/bin/bash
+source ~/.bashrc
+workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi_mr
+rm -rf \$workingdir
+mkdir -p \$workingdir
+#cd \$workingdir
+mkdir -p /local/scratch/${s}
+mkdir -p /local/scratch/${s}/dwi_mr
+ssd=/local/scratch/${s}/dwi_mr
+cd \$ssd
+echo current folder is \`pwd\`
+ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=192
+
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+###tckgen and connectome
+
+  tckgen WM_FODs_upsample125_norm.mif mr_track_20M_${s}.tck -act WM_FODs_upsample125.mif \
+            -backtrack -crop_at_gmwmi -seed_dynamic WM_FODs.mif -angle 22.5 -maxlength 250 -minlength 10 \
+            -power 1.0 -select 20M -force -nthreads ${threads} && echo 'tckgen done'**********
+  tcksift -act 5tt_freesurfer2diff_upsample125.mif mr_track_20M_${s}.tck WM_FODs.mif mr_track_10M_SIFT_${s}.tck \
+            -term_number 10M -force -nthreads ${threads} && echo 'sift done'*******
+            
+## FA, MD, MO, AD (L1), RD (L2+L3/2)            
+tcksample mr_track_10M_SIFT.tck dtifit_FA.nii mr_track_10M_SIFT_mean_FA.csv -stat_tck mean -force -nthreads ${threads}
+tcksample mr_track_10M_SIFT.tck dtifit_MD.nii mr_track_10M_SIFT_mean_MD.csv -stat_tck mean -force -nthreads ${threads}
+tcksample mr_track_10M_SIFT.tck dtifit_MO.nii mr_track_10M_SIFT_mean_MO.csv -stat_tck mean -force -nthreads ${threads}
+tcksample mr_track_10M_SIFT.tck dtifit_L1.nii mr_track_10M_SIFT_mean_AD.csv -stat_tck mean -force -nthreads ${threads}
+            fslmaths dtifit_L2 -add dtifit_L3 -div 2 dtifit_RD
+tcksample mr_track_10M_SIFT.tck dtifit_RD.nii mr_track_10M_SIFT_mean_RD.csv -stat_tck mean -force -nthreads ${threads}
+#### tck2connectome
+for im in aparc+aseg aparc.a2009s+aseg
+do
+tck2connectome -force -zero_diagonal -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif mr_sift_10M_connectome_\${im}_count.csv
+            
+tck2connectome -force -zero_diagonal -scale_length -stat_edge mean mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif \
+            mr_sift_10M_connectome_\${im}_length.csv -nthreads ${threads} 
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_FA.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_FA.csv
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_MD.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_MD.csv
+            
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_MO.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_MO.csv
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_AD.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_AD.csv
+            
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_RD.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_RD.csv
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+######################################################################################################################################
+     
+            
+done
+#### COPY ALL THE FILES TO SCRATCH ####
+#cp -rfv ../dwi /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/
+#######################################################################
+# pigz#
+pigz --best -b 1280 -f -T -p ${threads} *mif
+pigz --best -b 1280 -f -T -p ${threads} *nii
+cp -rfv \$ssd /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}
+echo "I THINK EVERYTHING IS DONE BY NOW"
+EOC
+
+################################################## END OF CMD##########################################################
+chmod +x $CMD
+
+
+### reference
+#echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=128 $CMD > ./job/log.tckgen.${SUBJECT} 2>&1 &">>$CMD_batch 
+echo "aprun -n 1 -N 1 -d ${threads} -j 3 -cc depth -e OMP_NUM_THREADS=192 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
+
+echo "sleep 0.2">>$CMD_batch
+i=$(($i+1))
+echo $i
+#echo "execute $CMD_sub"
+
+done
+
+echo "wait" >> $CMD_batch
+### batch submission
+
+echo $CMD_batch
+chmod +x $CMD_batch
+qsub $CMD_batch
+
+#$code/fsl_sub_hpc_2 -s smp,$threads -l /ifs/scratch/pimri/posnerlab/1anal/adni/adni_on_c2b2/job -t $CMD_batch
+#$code/fsl_sub_hpc_6 -l /ifs/scratch/pimri/posnerlab/1anal/adni/adni_on_c2b2/job -t $CMD_batch
