@@ -135,7 +135,7 @@ rm -rf *nii
      #pigz --fast -b 1280 -f mr_meanb0_nonbiascorr.mif
      mrconvert mr_meanb0_nonbiascorr.mif mr_meanb0_nonbiascorr.nii -force -quiet -nthreads ${threads}
      #pigz --fast -b 1280 -f mr_meanb0_nonbiascorr.nii
-     bet2 mr_meanb0_nonbiascorr mr_meanb0_nonbiascorr_bet2 -m -f 0.1
+     bet2 mr_meanb0_nonbiascorr mr_meanb0_nonbiascorr_bet2 -m -f 0.1 -v
      
      dwi2mask mr_dwi_denoised_gibbs_crop_preproc.mif mr_dwi_mask.mif -force -nthreads ${threads} -quiet
             #pigz --fast -b 1280 -f mr_dwi_mask.mif
