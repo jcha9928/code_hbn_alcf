@@ -65,12 +65,12 @@ ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=192
 ######################################################################################################################################
 ######################################################################################################################################
 ######################################################################################################################################
-###tckgen and connectome
 
-  tckgen WM_FODs_upsample125_norm.mif mr_track_20M_${s}.tck -act WM_FODs_upsample125.mif \
-            -backtrack -crop_at_gmwmi -seed_dynamic WM_FODs.mif -angle 22.5 -maxlength 250 -minlength 10 \
+###tckgen and connectome (time to 1M fot tckgen = 5.5M; time to 1M fot tckgen = 5.5M;
+time tckgen WM_FODs_upsample125_norm.mif.gz mr_track_20M_${s}.tck -act 5tt_freesurfer2diff_upsample125.mif.gz \
+            -backtrack -crop_at_gmwmi -seed_dynamic WM_FODs_upsample125_norm.mif.gz -angle 22.5 -maxlength 250 -minlength 10 \
             -power 1.0 -select 20M -force -nthreads ${threads} && echo 'tckgen done'**********
-  tcksift -act 5tt_freesurfer2diff_upsample125.mif mr_track_20M_${s}.tck WM_FODs.mif mr_track_10M_SIFT_${s}.tck \
+time tcksift -act 5tt_freesurfer2diff_upsample125.mif.gz mr_track_20M_${s}.tck WM_FODs.mif.gz mr_track_10M_SIFT_${s}.tck \
             -term_number 10M -force -nthreads ${threads} && echo 'sift done'*******
             
 ## FA, MD, MO, AD (L1), RD (L2+L3/2)            
