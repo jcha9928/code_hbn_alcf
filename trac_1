@@ -2,7 +2,7 @@
 
 list=$1
 N=`wc ${1} | awk '{print $1}'`
-threads=192
+threads=232
 #threadsX2=$((${threads}*2))
 
 hbn=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn
@@ -190,7 +190,7 @@ done
             mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -quiet -force -nthreads ${threads}
     
     bet2 mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125 \
-    mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2.nii -m -f 0.2  
+            mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2 -m -f 0.2  
 #fi
 
 
@@ -206,9 +206,11 @@ echo *****NOW GENERATING ANAT2DIFF.FLT.MAT *****
 mri_convert \$workingdir2/brain.mgz brain_anat_orig.nii && orientLAS brain_anat_orig.nii brain_anat.nii 
 
 mrconvert mr_meanb0_upsample125.mif mr_meanb0_upsample125.nii -nthreads ${threads} -force && \
-bet2 mr_meanb0_upsample125 mr_meanb0_upsample125_brain.nii 
+            bet2 mr_meanb0_upsample125 mr_meanb0_upsample125_brain 
 flirt -in brain_anat -ref mr_meanb0_upsample125_brain -out brain_anat2diff_upsample125 -omat anat2diff_upsample125.flt.mat -v
 flirt -in brain_anat -ref mr_meanb0_nonbiascorr_bet2 -out brain_anat2diff -omat anat2diff.flt.mat -v
+
+
 ### 5TTGEN#########################################
 echo ***** NOW 5TTGEN *****
 #mri_convert \$workingdir3/*_T1w.nii.gz T1.nii.gz && orientLAS T1.nii.gz T1_flip.nii.gz
@@ -220,10 +222,10 @@ for im in aparc+aseg aparc.a2009s+aseg
 do
    echo ****NOW CONVERTING MGZ TO NII
    mri_convert \$workingdir2/\${im}.mgz \${im}.nii
-   sleep 0.2
+   
    echo ****FLIPING FOR FSL
    orientLAS \${im}.nii \${im}_flip.nii
-   sleep 0.2
+   
    echo ****NOW FLIRTING
    flirt -in \${im}_flip -out \${im}_2_diff_upsample125_flt -ref mr_meanb0_upsample125_brain \
             -applyxfm -init anat2diff_upsample125.flt.mat -interp nearestneighbour -v
@@ -367,7 +369,7 @@ chmod +x $CMD
 
 ### reference
 #echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=128 $CMD > ./job/log.tckgen.${SUBJECT} 2>&1 &">>$CMD_batch 
-echo "aprun -n 1 -N 1 -d ${threads} -j 3 -cc depth -e OMP_NUM_THREADS=${threads} $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
+echo "aprun -n 1 -N 1 -d ${threads} -j 3 -cc depth -e OMP_NUM_THREADS=256 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
 
 echo "sleep 0.2">>$CMD_batch
 i=$(($i+1))
