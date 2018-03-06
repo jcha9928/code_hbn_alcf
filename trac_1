@@ -107,8 +107,8 @@ rm -rf *nii
     if [ \$str = str ];then echo "##########nocropping needed###########"
 		cp b0s.mif.gz b0s_crop.mif.gz
 		cp mr_dwi_denoised_gibbs.mif.gz mr_dwi_denoised_gibbs_crop.mif.gz 
-    else mrcrop b0s.mif.gz b0s_crop.mif.gz -axis 2 1 80 -force -quiet 
-         mrcrop mr_dwi_denoised_gibbs.mif.gz mr_dwi_denoised_gibbs_crop.mif.gz -axis 2 1 80 -force ${threads}
+    else mrcrop b0s.mif.gz b0s_crop.mif.gz -axis 2 1 80 -force -quiet -nthreads ${threads}
+         mrcrop mr_dwi_denoised_gibbs.mif.gz mr_dwi_denoised_gibbs_crop.mif.gz -axis 2 1 80 -nthreads ${threads}
     fi
     
     time dwipreproc mr_dwi_denoised_gibbs_crop.mif.gz mr_dwi_denoised_gibbs_crop_preproc.mif.gz \
