@@ -271,9 +271,9 @@ time dwi2response dhollander mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif \
    echo dwi2fod
    time dwi2fod msmt_csd mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif \
             response_wm.txt \
-            WM_FODs_upsample125.mif.gz \
-            response_gm.txt gm.mif.gz \
-             response_csf.txt csf.mif.gz \
+            WM_FODs_upsample125.mif \
+            response_gm.txt gm.mif \
+             response_csf.txt csf.mif \
             -mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii \
             -force -nthreads ${threads} 
 #fi
