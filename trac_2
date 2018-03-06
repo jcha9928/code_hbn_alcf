@@ -7,7 +7,7 @@ threads=192
 
 hbn=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn
 
-CMD_batch=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.batch.trac.${list}
+CMD_batch=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd2.batch.trac.${list}
 rm -rf $CMD_batch
 
 #######################################################################################################
@@ -33,12 +33,12 @@ for s in `cat /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/\$
             
 do
 #s=`echo $SUBJECT | egrep -o '[0-9]{8}'`
-CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.${s}
+CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd2.trac.${s}
 rm -rf $CMD
 
-rm -rf /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.${s}
+rm -rf /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd2.${s}
 
-CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1_sub.trac.${s}
+CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd2_sub.trac.${s}
 rm -rf $CMD_sub
 
 
@@ -125,7 +125,7 @@ chmod +x $CMD
 
 ### reference
 #echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=128 $CMD > ./job/log.tckgen.${SUBJECT} 2>&1 &">>$CMD_batch 
-echo "aprun -n 1 -N 1 -d ${threads} -j 3 -cc depth -e OMP_NUM_THREADS=192 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
+echo "aprun -n 1 -N 1 -d ${threads} -j 3 -cc depth -e OMP_NUM_THREADS=192 $CMD > ./job/log.cmd2.${s} 2>&1 &">>$CMD_batch
 
 echo "sleep 0.2">>$CMD_batch
 i=$(($i+1))
