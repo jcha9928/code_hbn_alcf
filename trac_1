@@ -296,11 +296,11 @@ dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii -o dtifit 
 
 
 ###tckgen and connectome
-  tckgen WM_FODs_upsample125_norm.mif mr_track_20M_${s}.tck -act WM_FODs_upsample125.mif.gz \
-            -backtrack -crop_at_gmwmi -seed_dynamic WM_FODs.mif.gz -angle 22.5 -maxlength 250 -minlength 10 \
+  tckgen WM_FODs_upsample125_norm.mif mr_track_20M_${s}.tck -act WM_FODs_upsample125.mif \
+            -backtrack -crop_at_gmwmi -seed_dynamic WM_FODs.mif -angle 22.5 -maxlength 250 -minlength 10 \
             -power 1.0 -select 20M -force -nthreads ${threads} && echo 'tckgen done'**********
 
-  tcksift -act 5tt_freesurfer2diff_upsample125.mif mr_track_20M_${s}.tck WM_FODs.mif.gz mr_track_10M_SIFT_${s}.tck \
+  tcksift -act 5tt_freesurfer2diff_upsample125.mif mr_track_20M_${s}.tck WM_FODs.mif mr_track_10M_SIFT_${s}.tck \
             -term_number 10M -force -nthreads ${threads} && echo 'sift done'*******
 ## FA, MD, MO, AD (L1), RD (L2+L3/2)            
 tcksample mr_track_10M_SIFT.tck dtifit_FA.nii mr_track_10M_SIFT_mean_FA.csv -stat_tck mean -force -nthreads ${threads}
@@ -313,24 +313,28 @@ tcksample mr_track_10M_SIFT.tck dtifit_RD.nii mr_track_10M_SIFT_mean_RD.csv -sta
 #### tck2connectome
 for im in aparc+aseg aparc.a2009s+aseg
 do
-tck2connectome -force -zero_diagonal mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_count.csv
-            -nthreads ${threads}
-tck2connectome -force -zero_diagonal -scale_length -stat_edge mean mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz \
+tck2connectome -force -zero_diagonal -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif mr_sift_10M_connectome_\${im}_count.csv
+            
+tck2connectome -force -zero_diagonal -scale_length -stat_edge mean mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif \
             mr_sift_10M_connectome_\${im}_length.csv -nthreads ${threads} 
 
-tck2connectome mr_track_10M_SIFT.tck nodes_aparc+aseg.mif* mr_sift_10M_connectome_aparc+aseg_fa.csv -zero_diagonal \
-            -scale_file mr_track_10M_SIFT2_mean_fa.csv -stat_edge mean
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_FA.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_FA.csv
 
-tck2connectome -force -zero_diagonal -stat_edge mean mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz \
-            -scale_file mr_sift_10M_connectome_\${im}_dti_FA.csv -nthreads ${threads} 
-tck2connectome -force -zero_diagonal -stat_edge mean mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz \
-            -scale_file mr_sift_10M_connectome_\${im}_dti_MD.csv -nthreads ${threads}         
-tck2connectome -force -zero_diagonal -stat_edge mean mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz \
-            -scale_file mr_sift_10M_connectome_\${im}_dti_MO.csv -nthreads ${threads}   
-tck2connectome -force -zero_diagonal -stat_edge mean mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz \
-            -scale_file mr_sift_10M_connectome_\${im}_dti_RD.csv -nthreads ${threads} 
-tck2connectome -force -zero_diagonal -stat_edge mean mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz \
-            -scale_file mr_sift_10M_connectome_\${im}_dti_AD.csv -nthreads ${threads}             
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_MD.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_MD.csv
+            
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_MO.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_MO.csv
+
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_AD.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_AD.csv
+            
+tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_RD.csv -nthreads ${threads} \
+            mr_track_10M_SIFT_${s}.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_RD.csv
+
+     
             
 done
 
