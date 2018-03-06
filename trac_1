@@ -104,7 +104,7 @@ rm -rf *nii
     
     dim2=\`mrinfo mr_dwi_denoised_gibbs.mif.gz | grep "x 81 x"\`
     str=\${dim2}str
-    if [ \$str = str ];then echo "##########nocropping needed###########"
+    if [ "\${str}" = str ];then echo "##########nocropping needed###########"
 		cp b0s.mif.gz b0s_crop.mif.gz
 		cp mr_dwi_denoised_gibbs.mif.gz mr_dwi_denoised_gibbs_crop.mif.gz 
     else mrcrop b0s.mif.gz b0s_crop.mif.gz -axis 2 1 80 -force -quiet -nthreads ${threads}
