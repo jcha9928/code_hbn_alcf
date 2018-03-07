@@ -51,12 +51,12 @@ source ~/.bashrc
 workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi_mr
 rm -rf \$workingdir
 mkdir -p \$workingdir
-#cd \$workingdir
+cd \$workingdir
 
-mkdir -p /local/scratch/${s}
-mkdir -p /local/scratch/${s}/dwi_mr
-ssd=/local/scratch/${s}/dwi_mr
-cd \$ssd
+#mkdir -p /local/scratch/${s}
+#mkdir -p /local/scratch/${s}/dwi_mr
+#ssd=/local/scratch/${s}/dwi_mr
+#cd \$ssd
 
 echo current folder is \`pwd\`
 
@@ -378,7 +378,7 @@ echo "wait" >> $CMD_batch
 
 echo $CMD_batch
 chmod +x $CMD_batch
-echo qsub $CMD_batch
+qsub $CMD_batch
 
 #$code/fsl_sub_hpc_2 -s smp,$threads -l /ifs/scratch/pimri/posnerlab/1anal/adni/adni_on_c2b2/job -t $CMD_batch
 #$code/fsl_sub_hpc_6 -l /ifs/scratch/pimri/posnerlab/1anal/adni/adni_on_c2b2/job -t $CMD_batch
