@@ -45,8 +45,8 @@ cat<<EOA >$CMD
     ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=$threads
 
     recon-all -s ${SUBJECT} -i ${s}*T1w.nii.gz -parallel -openmp ${threads} 
-  
-  EOA
+
+EOA
 
   ################################################## END OF CMD##########################################################
   chmod +x $CMD
