@@ -1,0 +1,30 @@
+Jobid: 203769
+qsub --mode script -t 04:00:00 -n 20 --attrs mcdram=cache:numa=quad:ssds=required:ssd_size=64 -A AD_Brain_Imaging -M jiook.cha@nyspi.columbia.edu ATP_ENABLED=1 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.batch.trac.list_test
+Thu Mar 08 17:39:14 2018 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf
+jobid 203769 submitted from terminal /dev/pts/15
+2018-03-08 17:40:10,865 INFO: Starting Resource_Prologue
+2018-03-08 17:40:10,881 DEBUG: no enabling attribute found
+2018-03-08 17:40:10,881 INFO: Resource_Prologue finished with exit code 0
+Thu Mar 08 17:40:31 2018 +0000 (UTC) 
+Thu Mar 08 17:40:31 2018 +0000 (UTC) Command: '/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.batch.trac.list_test'
+Thu Mar 08 17:40:31 2018 +0000 (UTC) 
+Thu Mar 08 17:40:31 2018 +0000 (UTC) Environment:
+Thu Mar 08 17:40:31 2018 +0000 (UTC) COBALT_PARTCORES=64
+Thu Mar 08 17:40:31 2018 +0000 (UTC) SHELL=/bin/bash
+Thu Mar 08 17:40:31 2018 +0000 (UTC) COBALT_PROJECT=AD_Brain_Imaging
+Thu Mar 08 17:40:31 2018 +0000 (UTC) COBALT_PARTNAME=34,3134,3137,3156-3159,3399,3560-3561,3563-3568,4262-4264,4480
+Thu Mar 08 17:40:31 2018 +0000 (UTC) COBALT_JOBID=203769
+Thu Mar 08 17:40:31 2018 +0000 (UTC) COBALT_STARTTIME=1520530797
+Thu Mar 08 17:40:31 2018 +0000 (UTC) LOGNAME=jcha
+Thu Mar 08 17:40:31 2018 +0000 (UTC) USER=jcha
+Thu Mar 08 17:40:31 2018 +0000 (UTC) COBALT_ENDTIME=1520545197
+Thu Mar 08 17:40:31 2018 +0000 (UTC) COBALT_PARTSIZE=20
+Thu Mar 08 17:40:31 2018 +0000 (UTC) HOME=/home/jcha
+Thu Mar 08 17:40:31 2018 +0000 (UTC) COBALT_JOBSIZE=20
+Thu Mar 08 17:40:31 2018 +0000 (UTC) COBALT_QUEUE=default
+Thu Mar 08 17:40:31 2018 +0000 (UTC) 
+Thu Mar 08 17:40:31 2018 +0000 (UTC) Info: stdin received from /dev/null
+Thu Mar 08 17:40:31 2018 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/203769.output
+Thu Mar 08 17:40:31 2018 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/203769.error
+Thu Mar 08 17:40:31 2018 +0000 (UTC) 
+Thu Mar 08 17:41:33 2018 +0000 (UTC) Info: task completed normally with an exit code of 126; initiating job cleanup and removal
