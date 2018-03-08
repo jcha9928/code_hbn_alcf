@@ -485,9 +485,9 @@ done
 #######################################################################
 
 # pigz#
-pigz --best -b 1280 -f -T -p ${threads} *mif
-pigz --best -b 1280 -f -T -p ${threads} *nii
-cp -rfv \$ssd /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}
+#pigz --best -b 1280 -f -T -p ${threads} *mif
+#pigz --best -b 1280 -f -T -p ${threads} *nii
+#cp -rfv \$ssd /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}
 
 echo "I THINK EVERYTHING IS DONE BY NOW"
 EOC
