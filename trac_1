@@ -2,7 +2,7 @@
 
 list=$1
 N=`wc ${1} | awk '{print $1}'`
-threads=124
+threads=128
 #threadsX2=$((${threads}*2))
 
 hbn=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn
