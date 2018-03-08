@@ -33,14 +33,14 @@ for s in `cat /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/\$
             
 do
 #s=`echo $SUBJECT | egrep -o '[0-9]{8}'`
-CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.${s}
+CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.t${threads}.${s}
 rm -rf $CMD
 
-LOG=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.192.${s}
+LOG=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.t${threads}.${s}
 rm -rf $LOG
 
-CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1_sub.trac.${s}
-rm -rf $CMD_sub
+#CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1_sub.trac.${s}
+#rm -rf $CMD_sub
 
 
 SUBJECT=${s}
@@ -49,7 +49,7 @@ SUBJECT=${s}
 cat<<EOC >$CMD
 #!/bin/bash
 source ~/.bashrc
-workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi_mr_128
+workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi_mr_${threads}
 rm -rf \$workingdir
 mkdir -p \$workingdir
 cd \$workingdir
