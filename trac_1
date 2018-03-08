@@ -2,7 +2,7 @@
 
 list=$1
 N=`wc ${1} | awk '{print $1}'`
-threads=64
+threads=128
 #threadsX2=$((${threads}*2))
 
 hbn=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn
@@ -36,7 +36,7 @@ do
 CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.${s}
 rm -rf $CMD
 
-LOG=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.64.${s}
+LOG=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.128.${s}
 rm -rf $LOG
 
 CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1_sub.trac.${s}
