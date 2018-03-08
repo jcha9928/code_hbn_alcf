@@ -153,7 +153,16 @@ rm -rf *nii
 #%% 7. generating b0 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #if [ ! -e mr_meanb0.mif.gz ];then
      dwiextract mr_dwi_denoised_gibbs_crop_preproc_biasCorr.mif.gz - -bzero -quiet -nthreads ${threads} | mrmath - mean \
-     -force mr_meanb0.mif.gz -axis 3 -quiet -nthreads ${threads} 
+     	-force mr_meanb0.mif.gz -axis 3 -quiet -nthreads ${threads} 
+     mrconvert mr_meanb0.mif.gz mr_meanb0.nii.gz -force -quiet -nthreads ${threads}
+     
+     bet2 mr_meanb0 mr_meanb0_bet -m -f 0.2
+     
+     mrresize mr_meanb0_bet.nii.gz -voxel 1.25 mr_meanb0_bet_upsample125.nii.gz \
+     	-force -interp sinc -nthreads ${threads} -quiet
+     mrresize mr_meanb0_bet_mask.nii.gz -voxel 1.25 mr_meanb0_bet_mask_upsample125.nii.gz \
+     	-force -interp sinc -nthreads ${threads} -quiet
+     
      #&& pigz --fast -b 1280 -f mr_meanb0.mif
 #fi
 #% make sure to use "DILATED MASK" for FOD generation
@@ -189,7 +198,9 @@ workingdir3=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/anat
 mkdir xfm
 ### flirt 
 echo *****NOW GENERATING ANAT2DIFF.FLT.MAT *****
-mri_convert \$workingdir2/brain.mgz brain_anat_orig.nii.gz && orientLAS brain_anat_orig.nii.gz brain_anat.nii.gz 
+mrconvert \$workingdir2/brain.mgz brain.nii.gz -stride -1,2,3 -force
+mrconvert 
+#mrconvert \$workingdir2/brain.mgz brain_anat_orig.nii.gz && orientLAS brain_anat_orig.nii.gz brain_anat.nii.gz 
 mrconvert mr_meanb0_upsample125.mif.gz mr_meanb0_upsample125.nii.gz -nthreads ${threads} -force && \
             bet2 mr_meanb0_upsample125 mr_meanb0_upsample125_brain -v
 flirt -in brain_anat -ref mr_meanb0_upsample125_brain -out brain_anat2diff_upsample125 -omat anat2diff_upsample125.flt.mat -v
