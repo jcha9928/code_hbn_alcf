@@ -36,7 +36,8 @@ do
 CMD=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.${s}
 rm -rf $CMD
 
-rm -rf /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.${s}
+LOG=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.64.${s}
+rm -rf $LOG
 
 CMD_sub=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1_sub.trac.${s}
 rm -rf $CMD_sub
@@ -515,7 +516,7 @@ chmod +x $CMD
 
 ### reference
 #echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=128 $CMD > ./job/log.tckgen.${SUBJECT} 2>&1 &">>$CMD_batch 
-echo "aprun -n 1 -N 1 -d ${threads} -j 1 -cc depth -e OMP_NUM_THREADS=64 $CMD > ./job/log.cmd1.${s} 2>&1 &">>$CMD_batch
+echo "aprun -n 1 -N 1 -d ${threads} -j 1 -cc depth -e OMP_NUM_THREADS=64 $CMD > $LOG 2>&1 &">>$CMD_batch
 
 echo "sleep 0.2">>$CMD_batch
 i=$(($i+1))
