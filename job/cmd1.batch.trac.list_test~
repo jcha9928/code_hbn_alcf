@@ -1,0 +1,22 @@
+#!/bin/bash
+#COBALT -t 2
+#COBALT -n 4
+#COBALT -q debug-cache-quad
+#COBALT --attrs mcdram=cache:numa=quad 
+#COBALT --attrs ssds=required:ssd_size=100
+#COBALT -A AD_Brain_Imaging
+echo start............................................
+#export n_nodes=
+#export n_mpi_ranks_per_node=202
+#export n_mpi_ranks=202
+#export n_openmp_threads_per_rank=64
+#export n_hyperthreads_per_core=4
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAA536PTU > cmd1.log.sub-NDARAA536PTU &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAA948VFH > cmd1.log.sub-NDARAA948VFH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAC853DTE > cmd1.log.sub-NDARAC853DTE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAD232HVV > cmd1.log.sub-NDARAD232HVV &
+sleep 0.2
+wait

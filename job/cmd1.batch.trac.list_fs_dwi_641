@@ -1,0 +1,706 @@
+#!/bin/bash
+#COBALT -t 720
+#COBALT -n 1000
+#COBALT --attrs mcdram=cache:numa=quad 
+#COBALT --attrs ssds=required:ssd_size=100
+#COBALT -A AD_Brain_Imaging
+echo start............................................
+#export n_nodes=
+#export n_mpi_ranks_per_node=202
+#export n_mpi_ranks=202
+#export n_openmp_threads_per_rank=64
+#export n_hyperthreads_per_core=4
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAA536PTU > cmd1.log.sub-NDARAA536PTU &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAA948VFH > cmd1.log.sub-NDARAA948VFH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAC853DTE > cmd1.log.sub-NDARAC853DTE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAD232HVV > cmd1.log.sub-NDARAD232HVV &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAD481FXF > cmd1.log.sub-NDARAD481FXF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAE199TDD > cmd1.log.sub-NDARAE199TDD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAE358VBE > cmd1.log.sub-NDARAE358VBE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAG340ERT > cmd1.log.sub-NDARAG340ERT &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAH503YG1 > cmd1.log.sub-NDARAH503YG1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAH948UF0 > cmd1.log.sub-NDARAH948UF0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAJ366ZFA > cmd1.log.sub-NDARAJ366ZFA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAK187ZLP > cmd1.log.sub-NDARAK187ZLP &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAM277WZT > cmd1.log.sub-NDARAM277WZT &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAM675UR8 > cmd1.log.sub-NDARAM675UR8 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAP782TVC > cmd1.log.sub-NDARAP782TVC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAR025WX4 > cmd1.log.sub-NDARAR025WX4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAT100AEQ > cmd1.log.sub-NDARAT100AEQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAT299YRR > cmd1.log.sub-NDARAT299YRR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAT358XM9 > cmd1.log.sub-NDARAT358XM9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAT581NDH > cmd1.log.sub-NDARAT581NDH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAV519RND > cmd1.log.sub-NDARAV519RND &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAV610EY3 > cmd1.log.sub-NDARAV610EY3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAV747WVL > cmd1.log.sub-NDARAV747WVL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAV894XWD > cmd1.log.sub-NDARAV894XWD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAV945MCQ > cmd1.log.sub-NDARAV945MCQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAW179AYF > cmd1.log.sub-NDARAW179AYF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARAY461TZZ > cmd1.log.sub-NDARAY461TZZ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBA507GCT > cmd1.log.sub-NDARBA507GCT &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBA521RA8 > cmd1.log.sub-NDARBA521RA8 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBB854DRN > cmd1.log.sub-NDARBB854DRN &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBC734UVY > cmd1.log.sub-NDARBC734UVY &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBE123PWH > cmd1.log.sub-NDARBE123PWH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBF176LPM > cmd1.log.sub-NDARBF176LPM &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBG574KF4 > cmd1.log.sub-NDARBG574KF4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBG702FED > cmd1.log.sub-NDARBG702FED &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBG831VK4 > cmd1.log.sub-NDARBG831VK4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBJ482HJL > cmd1.log.sub-NDARBJ482HJL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBK669XJQ > cmd1.log.sub-NDARBK669XJQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBM213BEA > cmd1.log.sub-NDARBM213BEA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBM839WR5 > cmd1.log.sub-NDARBM839WR5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBN100LCD > cmd1.log.sub-NDARBN100LCD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBT640EBN > cmd1.log.sub-NDARBT640EBN &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBU112XZE > cmd1.log.sub-NDARBU112XZE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBU532YXZ > cmd1.log.sub-NDARBU532YXZ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBU928LV0 > cmd1.log.sub-NDARBU928LV0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBV059CGE > cmd1.log.sub-NDARBV059CGE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBV364MBC > cmd1.log.sub-NDARBV364MBC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBX974XDR > cmd1.log.sub-NDARBX974XDR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARBZ216FW8 > cmd1.log.sub-NDARBZ216FW8 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCA186WGH > cmd1.log.sub-NDARCA186WGH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCA690EBC > cmd1.log.sub-NDARCA690EBC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCA789EE0 > cmd1.log.sub-NDARCA789EE0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCB959FY4 > cmd1.log.sub-NDARCB959FY4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCC140AAK > cmd1.log.sub-NDARCC140AAK &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCD357CZR > cmd1.log.sub-NDARCD357CZR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCD401HGZ > cmd1.log.sub-NDARCD401HGZ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCG037CX4 > cmd1.log.sub-NDARCG037CX4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCG947ZC0 > cmd1.log.sub-NDARCG947ZC0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCH881EFG > cmd1.log.sub-NDARCH881EFG &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCJ007GF8 > cmd1.log.sub-NDARCJ007GF8 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCK647MU6 > cmd1.log.sub-NDARCK647MU6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCL016NHB > cmd1.log.sub-NDARCL016NHB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCL080RHP > cmd1.log.sub-NDARCL080RHP &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCL105LUE > cmd1.log.sub-NDARCL105LUE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCL590LPD > cmd1.log.sub-NDARCL590LPD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCP057XJB > cmd1.log.sub-NDARCP057XJB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCP360AFD > cmd1.log.sub-NDARCP360AFD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCR499NE4 > cmd1.log.sub-NDARCR499NE4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCT933HF2 > cmd1.log.sub-NDARCT933HF2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCU118LMX > cmd1.log.sub-NDARCU118LMX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCU865PBV > cmd1.log.sub-NDARCU865PBV &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCW419GBD > cmd1.log.sub-NDARCW419GBD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCW611MK5 > cmd1.log.sub-NDARCW611MK5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCW933FD5 > cmd1.log.sub-NDARCW933FD5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARCX053GU5 > cmd1.log.sub-NDARCX053GU5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDA695XTL > cmd1.log.sub-NDARDA695XTL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDB804YHE > cmd1.log.sub-NDARDB804YHE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDC360DGB > cmd1.log.sub-NDARDC360DGB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDE294HNX > cmd1.log.sub-NDARDE294HNX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDF373ZDW > cmd1.log.sub-NDARDF373ZDW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDH270YR5 > cmd1.log.sub-NDARDH270YR5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDH328DR9 > cmd1.log.sub-NDARDH328DR9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDJ825GBP > cmd1.log.sub-NDARDJ825GBP &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDK983BDA > cmd1.log.sub-NDARDK983BDA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDM425CG2 > cmd1.log.sub-NDARDM425CG2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDN489EXJ > cmd1.log.sub-NDARDN489EXJ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDN702GXX > cmd1.log.sub-NDARDN702GXX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDN770HY6 > cmd1.log.sub-NDARDN770HY6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDR067YMC > cmd1.log.sub-NDARDR067YMC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDR458MR7 > cmd1.log.sub-NDARDR458MR7 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDR658DRA > cmd1.log.sub-NDARDR658DRA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDT800YVF > cmd1.log.sub-NDARDT800YVF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDU799BZF > cmd1.log.sub-NDARDU799BZF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDW416KWZ > cmd1.log.sub-NDARDW416KWZ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDX469TC1 > cmd1.log.sub-NDARDX469TC1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDX561MRY > cmd1.log.sub-NDARDX561MRY &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDX770PJK > cmd1.log.sub-NDARDX770PJK &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDY150ZP9 > cmd1.log.sub-NDARDY150ZP9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDY714NV9 > cmd1.log.sub-NDARDY714NV9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDZ010EDH > cmd1.log.sub-NDARDZ010EDH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDZ058NZN > cmd1.log.sub-NDARDZ058NZN &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARDZ946KVL > cmd1.log.sub-NDARDZ946KVL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREB093GH6 > cmd1.log.sub-NDAREB093GH6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREC182WW2 > cmd1.log.sub-NDAREC182WW2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREC542MH3 > cmd1.log.sub-NDAREC542MH3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREC648WEL > cmd1.log.sub-NDAREC648WEL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARED047DTH > cmd1.log.sub-NDARED047DTH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARED632KNG > cmd1.log.sub-NDARED632KNG &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREF057VX5 > cmd1.log.sub-NDAREF057VX5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREF164ZUJ > cmd1.log.sub-NDAREF164ZUJ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREF389RY2 > cmd1.log.sub-NDAREF389RY2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREF893ZM8 > cmd1.log.sub-NDAREF893ZM8 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREG930XPP > cmd1.log.sub-NDAREG930XPP &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREH074NG8 > cmd1.log.sub-NDAREH074NG8 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREK255DEE > cmd1.log.sub-NDAREK255DEE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREK375DKR > cmd1.log.sub-NDAREK375DKR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREK544ENR > cmd1.log.sub-NDAREK544ENR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREK549XUQ > cmd1.log.sub-NDAREK549XUQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREK801BPB > cmd1.log.sub-NDAREK801BPB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREK918EC2 > cmd1.log.sub-NDAREK918EC2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREK947FYP > cmd1.log.sub-NDAREK947FYP &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREL063PMX > cmd1.log.sub-NDAREL063PMX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREM018TJQ > cmd1.log.sub-NDAREM018TJQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREM141CKP > cmd1.log.sub-NDAREM141CKP &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREM155HGQ > cmd1.log.sub-NDAREM155HGQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREM703YFD > cmd1.log.sub-NDAREM703YFD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREM731BYM > cmd1.log.sub-NDAREM731BYM &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREM887YY8 > cmd1.log.sub-NDAREM887YY8 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREN667YTZ > cmd1.log.sub-NDAREN667YTZ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARER970AEF > cmd1.log.sub-NDARER970AEF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARET653TAM > cmd1.log.sub-NDARET653TAM &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARET949LMU > cmd1.log.sub-NDARET949LMU &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREU211JMY > cmd1.log.sub-NDAREU211JMY &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREU591YYA > cmd1.log.sub-NDAREU591YYA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREV527ZRF > cmd1.log.sub-NDAREV527ZRF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREY962BM7 > cmd1.log.sub-NDAREY962BM7 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDAREZ098ZPE > cmd1.log.sub-NDAREZ098ZPE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFA402LMW > cmd1.log.sub-NDARFA402LMW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFA464HJQ > cmd1.log.sub-NDARFA464HJQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFA815FXE > cmd1.log.sub-NDARFA815FXE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFB107PVH > cmd1.log.sub-NDARFB107PVH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFB500HHN > cmd1.log.sub-NDARFB500HHN &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFB757VY3 > cmd1.log.sub-NDARFB757VY3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFB908HVX > cmd1.log.sub-NDARFB908HVX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFF644ZGD > cmd1.log.sub-NDARFF644ZGD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFG027BT5 > cmd1.log.sub-NDARFG027BT5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFG757CEU > cmd1.log.sub-NDARFG757CEU &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFH674DWX > cmd1.log.sub-NDARFH674DWX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFJ803JF7 > cmd1.log.sub-NDARFJ803JF7 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFK477WX9 > cmd1.log.sub-NDARFK477WX9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFL411AT1 > cmd1.log.sub-NDARFL411AT1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFM080VAF > cmd1.log.sub-NDARFM080VAF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFN452VPC > cmd1.log.sub-NDARFN452VPC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFP909LY1 > cmd1.log.sub-NDARFP909LY1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFR108JNB > cmd1.log.sub-NDARFR108JNB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFR109LKT > cmd1.log.sub-NDARFR109LKT &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFR820KFF > cmd1.log.sub-NDARFR820KFF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFT834NT1 > cmd1.log.sub-NDARFT834NT1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFT881VT6 > cmd1.log.sub-NDARFT881VT6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFU789PRX > cmd1.log.sub-NDARFU789PRX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFV780ABD > cmd1.log.sub-NDARFV780ABD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFW130NGG > cmd1.log.sub-NDARFW130NGG &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFW292PBD > cmd1.log.sub-NDARFW292PBD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFW444PN1 > cmd1.log.sub-NDARFW444PN1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFY612EMR > cmd1.log.sub-NDARFY612EMR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARFZ296UNG > cmd1.log.sub-NDARFZ296UNG &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGA499CKF > cmd1.log.sub-NDARGA499CKF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGA563XVW > cmd1.log.sub-NDARGA563XVW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGA967MGC > cmd1.log.sub-NDARGA967MGC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGC471KD1 > cmd1.log.sub-NDARGC471KD1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGE366WNC > cmd1.log.sub-NDARGE366WNC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGE946RCB > cmd1.log.sub-NDARGE946RCB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGF367KVL > cmd1.log.sub-NDARGF367KVL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGG539YGN > cmd1.log.sub-NDARGG539YGN &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGH634ME7 > cmd1.log.sub-NDARGH634ME7 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGH790CEF > cmd1.log.sub-NDARGH790CEF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGK041TPB > cmd1.log.sub-NDARGK041TPB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGK059JW7 > cmd1.log.sub-NDARGK059JW7 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGK736HF4 > cmd1.log.sub-NDARGK736HF4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGL834CMQ > cmd1.log.sub-NDARGL834CMQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGL963HU4 > cmd1.log.sub-NDARGL963HU4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGM498YFL > cmd1.log.sub-NDARGM498YFL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGM610LF0 > cmd1.log.sub-NDARGM610LF0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGT022BEW > cmd1.log.sub-NDARGT022BEW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGT682ZWN > cmd1.log.sub-NDARGT682ZWN &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGV781AMW > cmd1.log.sub-NDARGV781AMW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGW404GJL > cmd1.log.sub-NDARGW404GJL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGX173AC3 > cmd1.log.sub-NDARGX173AC3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGX443CEU > cmd1.log.sub-NDARGX443CEU &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGY054ENV > cmd1.log.sub-NDARGY054ENV &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGY148EVU > cmd1.log.sub-NDARGY148EVU &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGY622NG6 > cmd1.log.sub-NDARGY622NG6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARGZ038DRL > cmd1.log.sub-NDARGZ038DRL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHA387FPM > cmd1.log.sub-NDARHA387FPM &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHB993EV0 > cmd1.log.sub-NDARHB993EV0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHC462NGR > cmd1.log.sub-NDARHC462NGR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHD059PEQ > cmd1.log.sub-NDARHD059PEQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHD507TEF > cmd1.log.sub-NDARHD507TEF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHE199NGL > cmd1.log.sub-NDARHE199NGL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHF023VG3 > cmd1.log.sub-NDARHF023VG3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHF150FDY > cmd1.log.sub-NDARHF150FDY &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHF351AA6 > cmd1.log.sub-NDARHF351AA6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHG152GZC > cmd1.log.sub-NDARHG152GZC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHJ034LDM > cmd1.log.sub-NDARHJ034LDM &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHJ523XGB > cmd1.log.sub-NDARHJ523XGB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHJ946UPH > cmd1.log.sub-NDARHJ946UPH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHK598YJC > cmd1.log.sub-NDARHK598YJC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHL164JHH > cmd1.log.sub-NDARHL164JHH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHL238VL2 > cmd1.log.sub-NDARHL238VL2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHL358LGQ > cmd1.log.sub-NDARHL358LGQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHM273AXL > cmd1.log.sub-NDARHM273AXL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHM304AXP > cmd1.log.sub-NDARHM304AXP &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHM413HVA > cmd1.log.sub-NDARHM413HVA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHM615PJH > cmd1.log.sub-NDARHM615PJH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHN067BTE > cmd1.log.sub-NDARHN067BTE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHN158DC6 > cmd1.log.sub-NDARHN158DC6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHN749RW4 > cmd1.log.sub-NDARHN749RW4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHP176DPE > cmd1.log.sub-NDARHP176DPE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHP558MGA > cmd1.log.sub-NDARHP558MGA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHP656DLC > cmd1.log.sub-NDARHP656DLC &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHP924ZHW > cmd1.log.sub-NDARHP924ZHW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHR372GJ7 > cmd1.log.sub-NDARHR372GJ7 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHR944BBY > cmd1.log.sub-NDARHR944BBY &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHT095YB4 > cmd1.log.sub-NDARHT095YB4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHT218GFA > cmd1.log.sub-NDARHT218GFA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHW216PER > cmd1.log.sub-NDARHW216PER &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHX739YBW > cmd1.log.sub-NDARHX739YBW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHX877BLQ > cmd1.log.sub-NDARHX877BLQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHZ255RA6 > cmd1.log.sub-NDARHZ255RA6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHZ439EBY > cmd1.log.sub-NDARHZ439EBY &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARHZ923PAH > cmd1.log.sub-NDARHZ923PAH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJA157YB3 > cmd1.log.sub-NDARJA157YB3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJB027GMR > cmd1.log.sub-NDARJB027GMR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJC514CE0 > cmd1.log.sub-NDARJC514CE0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJE686DJL > cmd1.log.sub-NDARJE686DJL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJF579EH9 > cmd1.log.sub-NDARJF579EH9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJG300HWH > cmd1.log.sub-NDARJG300HWH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJG821GH3 > cmd1.log.sub-NDARJG821GH3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJH652HGG > cmd1.log.sub-NDARJH652HGG &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJH925ZCD > cmd1.log.sub-NDARJH925ZCD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJJ343TR0 > cmd1.log.sub-NDARJJ343TR0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJK085PZL > cmd1.log.sub-NDARJK085PZL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJM239GN4 > cmd1.log.sub-NDARJM239GN4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJM708VGE > cmd1.log.sub-NDARJM708VGE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJP133YL3 > cmd1.log.sub-NDARJP133YL3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJP444DZM > cmd1.log.sub-NDARJP444DZM &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJP489HCE > cmd1.log.sub-NDARJP489HCE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJR525HTX > cmd1.log.sub-NDARJR525HTX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJR687LGX > cmd1.log.sub-NDARJR687LGX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJT606WGQ > cmd1.log.sub-NDARJT606WGQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJT730WP0 > cmd1.log.sub-NDARJT730WP0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJU787GF5 > cmd1.log.sub-NDARJU787GF5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJV268PNW > cmd1.log.sub-NDARJV268PNW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJV377HG4 > cmd1.log.sub-NDARJV377HG4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJV894XP2 > cmd1.log.sub-NDARJV894XP2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJW373UE3 > cmd1.log.sub-NDARJW373UE3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJW685KBA > cmd1.log.sub-NDARJW685KBA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJX421FWR > cmd1.log.sub-NDARJX421FWR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJY747PRJ > cmd1.log.sub-NDARJY747PRJ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJZ089HVP > cmd1.log.sub-NDARJZ089HVP &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJZ217VJ6 > cmd1.log.sub-NDARJZ217VJ6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARJZ274PRQ > cmd1.log.sub-NDARJZ274PRQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKA085YRG > cmd1.log.sub-NDARKA085YRG &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKA429EPF > cmd1.log.sub-NDARKA429EPF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKC403LRW > cmd1.log.sub-NDARKC403LRW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKC452YVR > cmd1.log.sub-NDARKC452YVR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKF615JNZ > cmd1.log.sub-NDARKF615JNZ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKG460MWV > cmd1.log.sub-NDARKG460MWV &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKG594WKT > cmd1.log.sub-NDARKG594WKT &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKG785VAJ > cmd1.log.sub-NDARKG785VAJ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKH421UB1 > cmd1.log.sub-NDARKH421UB1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKH741PL8 > cmd1.log.sub-NDARKH741PL8 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKH837TB2 > cmd1.log.sub-NDARKH837TB2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKL327VRH > cmd1.log.sub-NDARKL327VRH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKM551DA4 > cmd1.log.sub-NDARKM551DA4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKM941XLL > cmd1.log.sub-NDARKM941XLL &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKN509RP9 > cmd1.log.sub-NDARKN509RP9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKP815KPZ > cmd1.log.sub-NDARKP815KPZ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKR010EN7 > cmd1.log.sub-NDARKR010EN7 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKR195PL9 > cmd1.log.sub-NDARKR195PL9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKT811ATJ > cmd1.log.sub-NDARKT811ATJ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKV482FU9 > cmd1.log.sub-NDARKV482FU9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKV965WLU > cmd1.log.sub-NDARKV965WLU &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKW521EMY > cmd1.log.sub-NDARKW521EMY &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKW738AMY > cmd1.log.sub-NDARKW738AMY &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKW999WZD > cmd1.log.sub-NDARKW999WZD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKX346VTV > cmd1.log.sub-NDARKX346VTV &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKX761BH9 > cmd1.log.sub-NDARKX761BH9 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARKY667THK > cmd1.log.sub-NDARKY667THK &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLA516PH1 > cmd1.log.sub-NDARLA516PH1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLB017MBJ > cmd1.log.sub-NDARLB017MBJ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLB547HJD > cmd1.log.sub-NDARLB547HJD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLD016VCA > cmd1.log.sub-NDARLD016VCA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLF142AF5 > cmd1.log.sub-NDARLF142AF5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLF283KJX > cmd1.log.sub-NDARLF283KJX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLG942AZ1 > cmd1.log.sub-NDARLG942AZ1 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLH881FBD > cmd1.log.sub-NDARLH881FBD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLH979WFX > cmd1.log.sub-NDARLH979WFX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLJ334YD0 > cmd1.log.sub-NDARLJ334YD0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLJ654TZ0 > cmd1.log.sub-NDARLJ654TZ0 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLJ886BFK > cmd1.log.sub-NDARLJ886BFK &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLK963HXP > cmd1.log.sub-NDARLK963HXP &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLL389TUF > cmd1.log.sub-NDARLL389TUF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLL790WLF > cmd1.log.sub-NDARLL790WLF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLL914UW4 > cmd1.log.sub-NDARLL914UW4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLN070VX7 > cmd1.log.sub-NDARLN070VX7 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLN778RYN > cmd1.log.sub-NDARLN778RYN &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLP181HLA > cmd1.log.sub-NDARLP181HLA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLP507NKW > cmd1.log.sub-NDARLP507NKW &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLP858RAA > cmd1.log.sub-NDARLP858RAA &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLR030EW6 > cmd1.log.sub-NDARLR030EW6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLU606ZDD > cmd1.log.sub-NDARLU606ZDD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLY483UNZ > cmd1.log.sub-NDARLY483UNZ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLZ104NDT > cmd1.log.sub-NDARLZ104NDT &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARLZ228PCB > cmd1.log.sub-NDARLZ228PCB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMA449JDZ > cmd1.log.sub-NDARMA449JDZ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMA875ARE > cmd1.log.sub-NDARMA875ARE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMC412BCK > cmd1.log.sub-NDARMC412BCK &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARME656MTN > cmd1.log.sub-NDARME656MTN &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARME930DE7 > cmd1.log.sub-NDARME930DE7 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMF508PA2 > cmd1.log.sub-NDARMF508PA2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMG196KV4 > cmd1.log.sub-NDARMG196KV4 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMH249AWF > cmd1.log.sub-NDARMH249AWF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMH763YZD > cmd1.log.sub-NDARMH763YZD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMJ334ZK3 > cmd1.log.sub-NDARMJ334ZK3 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMJ699RJN > cmd1.log.sub-NDARMJ699RJN &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMJ849UKD > cmd1.log.sub-NDARMJ849UKD &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARML024FF2 > cmd1.log.sub-NDARML024FF2 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARML142BEK > cmd1.log.sub-NDARML142BEK &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARML148UCE > cmd1.log.sub-NDARML148UCE &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARML406ZB8 > cmd1.log.sub-NDARML406ZB8 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMM005DLK > cmd1.log.sub-NDARMM005DLK &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMM137PT6 > cmd1.log.sub-NDARMM137PT6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMM326JCB > cmd1.log.sub-NDARMM326JCB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMM386PL6 > cmd1.log.sub-NDARMM386PL6 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMM782KJK > cmd1.log.sub-NDARMM782KJK &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMM905VYR > cmd1.log.sub-NDARMM905VYR &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMM951YEH > cmd1.log.sub-NDARMM951YEH &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMM990URX > cmd1.log.sub-NDARMM990URX &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMN302YAV > cmd1.log.sub-NDARMN302YAV &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMN376BMF > cmd1.log.sub-NDARMN376BMF &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMR039JV5 > cmd1.log.sub-NDARMR039JV5 &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMR242UKQ > cmd1.log.sub-NDARMR242UKQ &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMT064WBB > cmd1.log.sub-NDARMT064WBB &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMT732GKM > cmd1.log.sub-NDARMT732GKM &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMT784NED > cmd1.log.sub-NDARMT784NED &
+sleep 0.2
+aprun -n 1 -N 1 -j 4 -cc depth -e OMP_NUM_THREADS=256 /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.trac.sub-NDARMU053YEU > cmd1.log.sub-NDARMU053YEU &
+sleep 0.2

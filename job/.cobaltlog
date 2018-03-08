@@ -1,0 +1,30 @@
+Jobid: 199733
+qsub --mode script -t 02:00:00 -n 8 --attrs mcdram=cache:numa=quad -A AD_Brain_Imaging -M jiook.cha@nyspi.columbia.edu -O /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/ /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.batch.trac.list_test
+Sat Mar 03 23:41:19 2018 +0000 (UTC) submitted with cwd set to: /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf
+jobid 199733 submitted from terminal /dev/pts/15
+2018-03-03 23:42:12,902 INFO: Starting Resource_Prologue
+2018-03-03 23:42:12,916 DEBUG: no enabling attribute found
+2018-03-03 23:42:12,916 INFO: Resource_Prologue finished with exit code 0
+Sat Mar 03 23:42:36 2018 +0000 (UTC) 
+Sat Mar 03 23:42:36 2018 +0000 (UTC) Command: '/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/cmd1.batch.trac.list_test'
+Sat Mar 03 23:42:36 2018 +0000 (UTC) 
+Sat Mar 03 23:42:36 2018 +0000 (UTC) Environment:
+Sat Mar 03 23:42:36 2018 +0000 (UTC) COBALT_PARTCORES=64
+Sat Mar 03 23:42:36 2018 +0000 (UTC) SHELL=/bin/bash
+Sat Mar 03 23:42:36 2018 +0000 (UTC) COBALT_PROJECT=AD_Brain_Imaging
+Sat Mar 03 23:42:36 2018 +0000 (UTC) COBALT_PARTNAME=94,96-97,1620-1621,1627,3208-3209
+Sat Mar 03 23:42:36 2018 +0000 (UTC) COBALT_JOBID=199733
+Sat Mar 03 23:42:36 2018 +0000 (UTC) COBALT_STARTTIME=1520120517
+Sat Mar 03 23:42:36 2018 +0000 (UTC) LOGNAME=jcha
+Sat Mar 03 23:42:36 2018 +0000 (UTC) USER=jcha
+Sat Mar 03 23:42:36 2018 +0000 (UTC) COBALT_ENDTIME=1520127717
+Sat Mar 03 23:42:36 2018 +0000 (UTC) COBALT_PARTSIZE=8
+Sat Mar 03 23:42:36 2018 +0000 (UTC) HOME=/home/jcha
+Sat Mar 03 23:42:36 2018 +0000 (UTC) COBALT_JOBSIZE=8
+Sat Mar 03 23:42:36 2018 +0000 (UTC) COBALT_QUEUE=default
+Sat Mar 03 23:42:36 2018 +0000 (UTC) 
+Sat Mar 03 23:42:36 2018 +0000 (UTC) Info: stdin received from /dev/null
+Sat Mar 03 23:42:36 2018 +0000 (UTC) Info: stdout sent to /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/.output
+Sat Mar 03 23:42:36 2018 +0000 (UTC) Info: stderr sent to /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/.error
+Sat Mar 03 23:42:36 2018 +0000 (UTC) 
+Sat Mar 03 23:57:13 2018 +0000 (UTC) Info: user delete requested with signal SIGTERM by user jcha

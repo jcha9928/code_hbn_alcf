@@ -1,0 +1,13 @@
+#!/bin/bash
+#COBALT -t 29
+#COBALT -n 
+#COBALT --attrs mcdram=cache:numa=quad 
+#COBALT -q debug-cache-quad
+#COBALT -A AD_Brain_Imaging
+echo start............................................
+#export n_nodes=
+#export n_mpi_ranks_per_node=202
+#export n_mpi_ranks=202
+#export n_openmp_threads_per_rank=64
+#export n_hyperthreads_per_core=4
+wait

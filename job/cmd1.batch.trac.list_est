@@ -1,0 +1,14 @@
+#!/bin/bash
+#COBALT -t 04:00:00
+#COBALT -n 
+#COBALT --attrs mcdram=cache:numa=quad 
+#COBALT -A AD_Brain_Imaging
+#COBALT -M jiook.cha@nyspi.columbia.edu
+#COBALT ATP_ENABLED=1
+echo start............................................
+#export n_nodes=$COBALT_JOBSIZE
+#export n_mpi_ranks_per_node=1
+#export n_mpi_ranks=1
+#export n_openmp_threads_per_rank=64
+#export n_hyperthreads_per_core=4
+wait
