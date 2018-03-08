@@ -516,7 +516,7 @@ chmod +x $CMD
 
 ### reference
 #echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=128 $CMD > ./job/log.tckgen.${SUBJECT} 2>&1 &">>$CMD_batch 
-echo "aprun -n 1 -N 1 -d ${threads} -j 3 -cc depth -e OMP_NUM_THREADS=64 $CMD > $LOG 2>&1 &">>$CMD_batch
+echo "aprun -n 1 -N 1 -d ${threads} -j $((${threads}/64)) -cc depth -e OMP_NUM_THREADS=$threads $CMD > $LOG 2>&1 &">>$CMD_batch
 
 echo "sleep 0.2">>$CMD_batch
 i=$(($i+1))
@@ -530,7 +530,7 @@ echo "wait" >> $CMD_batch
 
 echo $CMD_batch
 chmod +x $CMD_batch
-qsub $CMD_batch
+echo qsub $CMD_batch
 
 #$code/fsl_sub_hpc_2 -s smp,$threads -l /ifs/scratch/pimri/posnerlab/1anal/adni/adni_on_c2b2/job -t $CMD_batch
 #$code/fsl_sub_hpc_6 -l /ifs/scratch/pimri/posnerlab/1anal/adni/adni_on_c2b2/job -t $CMD_batch
