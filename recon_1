@@ -36,7 +36,7 @@ do
   LOG=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/code_hbn_alcf/job/log.cmd1.recon.t${threads}.${s}
   rm -rf $LOG
 
-    cat<<EOD >$CMD
+cat<<EOA >$CMD
     #!/bin/bash
     source ~/.bashrc
     FREESURFER_HOME=/lus/theta-fs0/projects/AD_Brain_Imaging/app/freesurfer
@@ -46,7 +46,7 @@ do
 
     recon-all -s ${SUBJECT} -i ${s}*T1w.nii.gz -parallel -openmp ${threads} 
   
-    EOD
+  EOA
 
   ################################################## END OF CMD##########################################################
   chmod +x $CMD
