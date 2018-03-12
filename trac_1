@@ -2,7 +2,7 @@
 
 list=$1
 N=`wc ${1} | awk '{print $1}'`
-threads=64
+threads=128
 #threadsX2=$((${threads}*2))
 
 hbn=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/hbn
@@ -52,16 +52,16 @@ source ~/.bashrc
 workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi_mr_${threads}
 rm -rf \$workingdir
 mkdir -p \$workingdir
-cd \$workingdir
+#cd \$workingdir
 
-#mkdir -p /local/scratch/${s}
-#mkdir -p /local/scratch/${s}/dwi_mr
-#ssd=/local/scratch/${s}/dwi_mr
-#cd \$ssd
+mkdir -p /local/scratch/${s}
+mkdir -p /local/scratch/${s}/dwi_mr
+ssd=/local/scratch/${s}/dwi_mr
+cd \$ssd
 
 echo current folder is \`pwd\`
 
-ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=192
+ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=$threads
 
 #%% 1. setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 cp -f /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi/*dir_dwi.nii.gz ./dti.nii.gz
@@ -73,6 +73,8 @@ cp -f /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*AP_acq-dwi
 cp -f /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*AP_acq-dwi_epi.nii.gz ./dwi_fmap_AP.nii.gz
 cp -f /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*PA_acq-dwi_epi.json ./dwi_fmap_PA.json
 cp -f /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/fmap/*PA_acq-dwi_epi.nii.gz ./dwi_fmap_PA.nii.gz
+
+
 #cp /ifs/scratch/pimri/posnerlab/1anal/adni/data/nii/${s}_*DTI.bvec_tp ./dti.bvec_tp
 #cp /ifs/scratch/pimri/posnerlab/1anal/adni/data/nii/${s}_*DTI.bval_tp ./dti.bval_tp
 #%% 2. DWI processing2-converting nifti to mif%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
