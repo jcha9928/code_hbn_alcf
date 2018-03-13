@@ -284,7 +284,7 @@ sleep 0.1
 fslsplit 5tt_freesurfer_diff_flt_dof6.nii.gz tmp_5tt -t 
 sleep 0.1
 
-for i in `seq 0 4`;
+for i in \`seq 0 4\`;
 do
 WarpImageMultiTransform 3 tmp_5tt000${i}.nii.gz tmp_5tt000${i}_warped.nii.gz --use-NN \
 	-R mr_meanb0_bet.nii.gz brain2diff_flt_dof62mr_meanb0_bet_synantsWarp.nii.gz brain2diff_flt_dof62mr_meanb0_bet_synantsAffine.txt	    
