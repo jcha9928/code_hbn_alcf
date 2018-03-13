@@ -481,7 +481,7 @@ dtifit -k mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.nii.gz -o dtif
 
      
             
-done
+#done
 
 #### COPY ALL THE FILES TO SCRATCH ####
 #cp -rfv ../dwi /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/
