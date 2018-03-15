@@ -14,8 +14,8 @@ rm -rf $CMD_batch
 cat<<EOC >$CMD_batch
 #!/bin/bash
 #COBALT -t 01:00:00
-#COBALT debug-cache-quad
 #COBALT -n $N
+#COBALT -q debug-cache-quad
 #COBALT --attrs mcdram=cache:numa=quad:ssds=required:ssd_size=128 
 #COBALT -A AD_Brain_Imaging
 #COBALT -M jiook.cha@nyspi.columbia.edu
@@ -182,7 +182,7 @@ chmod +x $CMD
 
 ### reference
 #echo "aprun -n 1 -N 1 -d 128 -j 2 -cc depth -e OMP_NUM_THREADS=128 $CMD > ./job/log.tckgen.${SUBJECT} 2>&1 &">>$CMD_batch 
-echo "aprun -n 1 -N 1 -d ${threads} -j 3 -cc depth -e OMP_NUM_THREADS=${threads} $CMD > $LOG 2>&1 &">>$CMD_batch
+echo "aprun -n 1 -N 1 -d ${threads} -j 2 -cc depth -e OMP_NUM_THREADS=${threads} $CMD > $LOG 2>&1 &">>$CMD_batch
 
 echo "sleep 0.2">>$CMD_batch
 i=$(($i+1))
