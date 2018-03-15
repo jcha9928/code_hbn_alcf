@@ -66,13 +66,12 @@ c -fv 5tt_freesurfer_diff_flt_dof6_warped_synant_upsample125.nii.gz \
             nodes_*.mif.gz
 echo current folder is \`pwd\`
 ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=$threads
+######################################################################################################################################
+######################################################################################################################################
+################################### STREAMLINE TRACTOGRAPHY ##############################################################
+######################################################################################################################################
+######################################################################################################################################
 
-######################################################################################################################################
-######################################################################################################################################
-######################################################################################################################################
-######################################################################################################################################
-######################################################################################################################################
-######################################################################################################################################
 
 ###tckgen and connectome (time to 1M for tckgen = 5.5m (50M ;  time to 1M fot tckgen = 5.5M;
 time tckgen WM_FODs_upsample125_norm.mif.gz mr_track_20M.tck -act 5tt_freesurfer_diff_flt_dof6_warped_synant_upsample125.nii.gz \
@@ -80,32 +79,82 @@ time tckgen WM_FODs_upsample125_norm.mif.gz mr_track_20M.tck -act 5tt_freesurfer
             -power 1.0 -select 20M -force -nthreads ${threads} && echo 'tckgen done'**********
 time tcksift -act 5tt_freesurfer_diff_flt_dof6_warped_synant_upsample125.nii.gz mr_track_20M.tck WM_FODs_upsample125_norm.mif.gz \
             mr_track_10M_SIFT.tck -term_number 10M -force -nthreads ${threads} && echo 'sift done'*******
-            
-## FA, MD, MO, AD (L1), RD (L2+L3/2)            
-tcksample mr_track_10M_SIFT.tck dtifit_FA.nii.gz mr_track_10M_SIFT_mean_FA.csv -stat_tck mean -force -nthreads ${threads}
-tcksample mr_track_10M_SIFT.tck dtifit_MD.nii.gz mr_track_10M_SIFT_mean_MD.csv -stat_tck mean -force -nthreads ${threads}
-tcksample mr_track_10M_SIFT.tck dtifit_MO.nii.gz mr_track_10M_SIFT_mean_MO.csv -stat_tck mean -force -nthreads ${threads}
-tcksample mr_track_10M_SIFT.tck dtifit_L1.nii.gz mr_track_10M_SIFT_mean_AD.csv -stat_tck mean -force -nthreads ${threads}
-            fslmaths dtifit_L2 -add dtifit_L3 -div 2 dtifit_RD
-tcksample mr_track_10M_SIFT.tck dtifit_RD.nii.gz mr_track_10M_SIFT_mean_RD.csv -stat_tck mean -force -nthreads ${threads}
 
-#### tck2connectome
+
+######################################################################################################################################
+######################################################################################################################################
+################################### GLOBAL TRACTOGRAPHY ##############################################################
+######################################################################################################################################
+######################################################################################################################################
+
+time tckglobal mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz \
+	response_wm.txt -riso response_csf.txt -riso response_gm.txt \
+	-mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz \
+	-niter 1e9 \
+	-fod WM_FODs_upsample125_norm_global.mif.gz \
+	-fiso fiso.mif.gz \
+	mr_track_global_1e9.tck -force
+            
+            
+
+######################################################################################################################################
+######################################################################################################################################
+################################### tck2connectome ##############################################################
+######################################################################################################################################
+######################################################################################################################################
+fslmaths dtifit_L2 -add dtifit_L3 -div 2 dtifit_RD
+imcp dtifit_L1 dtifit_AD
+
+## FA, MD, MO, AD (L1), RD (L2+L3/2)
+for dti in FA MD M0 AD RD
+do 
+tcksample mr_track_10M_SIFT.tck dtifit_\${dti}.nii.gz mr_track_10M_SIFT_mean_\${dti}.csv -stat_tck mean -force -nthreads ${threads}
+tcksample mr_track_global_1e9.tck dtifit_\${dti}.nii.gz mr_track_global_1e9_mean_\${dti}.csv -stat_tck mean -force -nthreads ${threads}
+
+done
+
+#tcksample mr_track_10M_SIFT.tck dtifit_FA.nii.gz mr_track_10M_SIFT_mean_FA.csv -stat_tck mean -force -nthreads ${threads}
+#tcksample mr_track_10M_SIFT.tck dtifit_MD.nii.gz mr_track_10M_SIFT_mean_MD.csv -stat_tck mean -force -nthreads ${threads}
+#tcksample mr_track_10M_SIFT.tck dtifit_MO.nii.gz mr_track_10M_SIFT_mean_MO.csv -stat_tck mean -force -nthreads ${threads}
+#tcksample mr_track_10M_SIFT.tck dtifit_L1.nii.gz mr_track_10M_SIFT_mean_AD.csv -stat_tck mean -force -nthreads ${threads}
+#tcksample mr_track_10M_SIFT.tck dtifit_RD.nii.gz mr_track_10M_SIFT_mean_RD.csv -stat_tck mean -force -nthreads ${threads}
+
+
 for im in aparc+aseg aparc.a2009s+aseg
 do
+#1.count
 tck2connectome -force -zero_diagonal -nthreads ${threads} \
-            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_count.csv
+            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_connectome_sift_10M_\${im}_count.csv
+tck2connectome -force -zero_diagonal -nthreads ${threads} \
+            mr_track_global_1e9.tck nodes_\${im}.mif.gz mr_connectome_global1e9_\${im}_count.csv
+#2.length
 tck2connectome -force -zero_diagonal -scale_length -stat_edge mean mr_track_10M_SIFT.tck nodes_\${im}.mif.gz \
-            mr_sift_10M_connectome_\${im}_length.csv -nthreads ${threads} 
-tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_FA.csv -nthreads ${threads} \
-            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_FA.csv
-tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_MD.csv -nthreads ${threads} \
-            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_MD.csv
-tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_MO.csv -nthreads ${threads} \
-            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_MO.csv
-tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_AD.csv -nthreads ${threads} \
-            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_AD.csv   
-tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_RD.csv -nthreads ${threads} \
-            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_RD.csv
+            mr_connectome_sift_10M_\${im}_length.csv -nthreads ${threads} 
+tck2connectome -force -zero_diagonal -scale_length -stat_edge mean mr_track_global_1e9.tck nodes_\${im}.mif.gz \
+            mr_connectome_global1e9_\${im}_length.csv -nthreads ${threads}
+
+#3-7: FA MD M0 AD RD
+   for dti in FA MD M0 AD RD
+   do       
+
+            tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_${dti}.csv \
+                        -nthreads ${threads} mr_track_10M_SIFT.tck nodes_\${im}.mif.gz \
+                        mr_connectome_sift_10M_\${im}_${dti}.csv
+            tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_${dti}.csv \
+                        -nthreads ${threads} mr_track_global_1e9.tck nodes_\${im}.mif.gz \
+                        mr_connectome_global1e9_\${im}_${dti}.csv            
+   done
+done
+   
+   
+#tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_MD.csv -nthreads ${threads} \
+#            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_MD.csv
+#tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_MO.csv -nthreads ${threads} \
+#            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_MO.csv
+#tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_AD.csv -nthreads ${threads} \
+#            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_AD.csv   
+#tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_RD.csv -nthreads ${threads} \
+#            mr_track_10M_SIFT.tck nodes_\${im}.mif.gz mr_sift_10M_connectome_\${im}_RD.csv
             
             
 ######################################################################################################################################
@@ -116,7 +165,6 @@ tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SI
 ######################################################################################################################################
      
             
-done
 #### COPY ALL THE FILES TO SCRATCH ####
 #cp -rfv ../dwi /lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/
 #######################################################################
