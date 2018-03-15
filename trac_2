@@ -51,8 +51,7 @@ cat<<EOC >$CMD
 #!/bin/bash
 source ~/.bashrc
 workingdir=/lus/theta-fs0/projects/AD_Brain_Imaging/anal/HBN/fs/${s}/dwi_mr
-rm -rf \$workingdir
-mkdir -p \$workingdir
+
 #cd \$workingdir
 mkdir -p /local/scratch/${s}
 mkdir -p /local/scratch/${s}/dwi_mr
