@@ -60,10 +60,10 @@ cd \$ssd
 
 #####################################################################################################################################
 ############## COPYING THE INPUT FILES ##############################################################################################
-cp -v 5tt_freesurfer_diff_flt_dof6_warped_synant_upsample125.nii.gz \
-            WM_FODs_upsample125_norm.mif.gz \
-            dtifit_*.nii.gz \
-            nodes_*.mif.gz ./
+cp -v \$workingdir/5tt_freesurfer_diff_flt_dof6_warped_synant_upsample125.nii.gz \
+            \$workingdir/WM_FODs_upsample125_norm.mif.gz \
+            \$workingdir/dtifit_*.nii.gz \
+            \$workingdir/nodes_*.mif.gz ./
 echo current folder is \`pwd\`
 ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=$threads
 ######################################################################################################################################
