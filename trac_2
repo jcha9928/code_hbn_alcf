@@ -89,7 +89,7 @@ time tcksift -act 5tt_freesurfer_diff_flt_dof6_warped_synant_upsample125.nii.gz 
 
 time tckglobal mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125.mif.gz \
 	response_wm.txt -riso response_csf.txt -riso response_gm.txt \
-	-mask mr_dwi_denoised_gibbs_crop_preproc_biasCorr_upsample125_bet2_mask.nii.gz \
+	-mask mr_mask_upsample125.mif.gz \
 	-niter 1e9 \
 	-fod WM_FODs_upsample125_norm_global.mif.gz \
 	-fiso fiso.mif.gz \
