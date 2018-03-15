@@ -137,12 +137,12 @@ tck2connectome -force -zero_diagonal -scale_length -stat_edge mean mr_track_glob
    for dti in FA MD M0 AD RD
    do       
 
-            tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_${dti}.csv \
+            tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_\${dti}.csv \
                         -nthreads ${threads} mr_track_10M_SIFT.tck nodes_\${im}.mif.gz \
-                        mr_connectome_sift_10M_\${im}_${dti}.csv
-            tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_${dti}.csv \
+                        mr_connectome_sift_10M_\${im}_\${dti}.csv
+            tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_\${dti}.csv \
                         -nthreads ${threads} mr_track_global_1e9.tck nodes_\${im}.mif.gz \
-                        mr_connectome_global1e9_\${im}_${dti}.csv            
+                        mr_connectome_global1e9_\${im}_\${dti}.csv            
    done
 done
    
