@@ -60,7 +60,7 @@ cd \$ssd
 
 #####################################################################################################################################
 ############## COPYING THE INPUT FILES ##############################################################################################
-c -fv 5tt_freesurfer_diff_flt_dof6_warped_synant_upsample125.nii.gz \
+cp -v 5tt_freesurfer_diff_flt_dof6_warped_synant_upsample125.nii.gz \
             WM_FODs_upsample125_norm.mif.gz \
             dtifit_*.nii.gz \
             nodes_*.mif.gz
