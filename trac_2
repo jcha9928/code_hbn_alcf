@@ -134,7 +134,7 @@ tck2connectome -force -zero_diagonal -scale_length -stat_edge mean mr_track_glob
             mr_connectome_global1e9_\${im}_length.csv -nthreads ${threads}
 
 #3-7: FA MD M0 AD RD
-   for dti in FA MD M0O AD RD
+   for dti in FA MD MO AD RD
    do       
 
             tck2connectome -force -zero_diagonal -stat_edge mean -scale_file mr_track_10M_SIFT_mean_\${dti}.csv \
