@@ -63,7 +63,7 @@ cd \$ssd
 cp -v 5tt_freesurfer_diff_flt_dof6_warped_synant_upsample125.nii.gz \
             WM_FODs_upsample125_norm.mif.gz \
             dtifit_*.nii.gz \
-            nodes_*.mif.gz
+            nodes_*.mif.gz ./
 echo current folder is \`pwd\`
 ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=$threads
 ######################################################################################################################################
